@@ -1,0 +1,12 @@
+.game_list {
+  padding: 0rem 5rem;
+}
+.game_list h2 {
+  padding: 5rem 0rem;
+}
+
+.games {
+  min-height: 80vh;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+}/*# sourceMappingURL=home.css.map */

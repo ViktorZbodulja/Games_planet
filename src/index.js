@@ -2,13 +2,13 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
+import { BrowserRouter } from "react-router-dom";
 
 //REDUX SETUP
 import { createStore, applyMiddleware, compose } from "redux";
 import rootReducer from "./reducers";
 import { Provider } from "react-redux";
 import thunk from "redux-thunk";
-import { BrowserRouter } from "react-router-dom";
 
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
