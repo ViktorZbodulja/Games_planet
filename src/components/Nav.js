@@ -2,6 +2,7 @@ import React, { useState } from "react";
 //animation
 import { motion } from "framer-motion";
 import logo from "../img/logo.svg";
+import { fadeIn } from "../animations";
 //Redux and Routes
 import { fetchSearch } from "../actions/gamesAction";
 import { useDispatch } from "react-redux";
@@ -24,7 +25,12 @@ function Nav() {
   };
 
   return (
-    <div className="nav">
+    <motion.div
+      className="nav"
+      variants={fadeIn}
+      initial="hidden"
+      animate="show"
+    >
       <div className="logo" onClick={clearSearched}>
         <img src={logo} alt="logo" />
         <h2>Games Planet</h2>
@@ -35,7 +41,7 @@ function Nav() {
           Search
         </button>
       </form>
-    </div>
+    </motion.div>
   );
 }
 

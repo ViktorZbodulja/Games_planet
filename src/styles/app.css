@@ -29,7 +29,6 @@ h1 {
 h3 {
   font-size: 1.3rem;
   color: #333;
-  padding: 1.5rem 0rem;
 }
 
 p {
@@ -86,12 +85,15 @@ input {
   -o-object-fit: cover;
      object-fit: cover;
 }
+.game h3 {
+  padding: 1.5rem 0rem;
+}
 
 .card_shadow {
   width: 100%;
   min-height: 100vh;
   overflow-y: scroll;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.7);
   position: fixed;
   top: 0;
   left: 0;
@@ -108,17 +110,20 @@ input {
 }
 
 .detail {
-  width: 80%;
+  width: 75%;
   border-radius: 1rem;
   padding: 2rem 5rem;
   background: white;
   position: absolute;
-  left: 10%;
+  left: 12.5%;
   color: black;
   z-index: 10;
 }
 .detail img {
   width: 100%;
+}
+.detail h3 {
+  font-size: 1.7rem;
 }
 
 .stats {
@@ -151,9 +156,41 @@ input {
 }
 
 .rating img {
-  width: 2rem;
-  height: 2rem;
+  width: 1.8rem;
+  height: 1.8rem;
   display: inline;
+}
+.rating h4 {
+  font-weight: lighter;
+}
+
+.rating_container {
+  display: flex;
+  align-items: center;
+  margin-top: 1rem;
+}
+.rating_container p {
+  margin-left: 0.6rem;
+  font-size: 1.4rem;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  grid-column-gap: 0.5rem;
+  grid-row-gap: 0.5rem;
+}
+
+.genre_container {
+  margin-top: 2rem;
+}
+
+.genre {
+  display: inline;
+  margin-right: 0.8rem;
+  border: 2px solid black;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.9rem;
 }
 
 .nav {

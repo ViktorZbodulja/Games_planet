@@ -16,7 +16,7 @@ import gamepad from "../img/gamepad.svg";
 import starEmpty from "../img/star-empty.png";
 import starFull from "../img/star-full.png";
 
-function Gamedetail() {
+function Gamedetail({ pathId }) {
   const navigate = useNavigate();
   //Exit detail
   const exitDetailHandler = (e) => {
@@ -69,12 +69,20 @@ function Gamedetail() {
     <>
       {!isLoading && (
         <div className="card_shadow shadow" onClick={exitDetailHandler}>
-          <div className="detail">
+          <motion.div className="detail" layoutId={pathId}>
             <div className="stats">
               <div className="rating">
-                <h3>{game.name}</h3>
-                <p>Rating: {game.rating}</p>
-                {getStars()}
+                <motion.h3 layoutId={`title ${pathId}`}>{game.name}</motion.h3>
+                <h4>{game.publishers[0].name}</h4>
+                <div className="rating_container">
+                  {getStars()}
+                  <p>({game.rating})</p>
+                </div>
+                <div className="genre_container">
+                  {game.genres.map((genre) => (
+                    <div className="genre">{genre.name}</div>
+                  ))}
+                </div>
               </div>
               <div className="info">
                 <h3>Platforms</h3>
@@ -90,9 +98,10 @@ function Gamedetail() {
               </div>
             </div>
             <div className="media">
-              <img
+              <motion.img
                 src={resizeImage(game.background_image, 1280)}
                 alt={game.background_image}
+                layoutId={`image ${pathId}`}
               />
             </div>
             <div className="description">
@@ -107,7 +116,7 @@ function Gamedetail() {
                 />
               ))}
             </div>
-          </div>
+          </motion.div>
         </div>
       )}
     </>

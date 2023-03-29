@@ -6,8 +6,9 @@ import { loadGames } from "../actions/gamesAction";
 //Components
 import Game from "../components/Game";
 //Animation
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { useLocation } from "react-router-dom";
+import { fadeIn } from "../animations";
 
 function Home() {
   //get current location
@@ -24,20 +25,32 @@ function Home() {
     (state) => state.games
   );
   return (
-    <div className="game_list">
-      <AnimatePresence>{pathId && <Gamedetail />}</AnimatePresence>
+    <div
+      className="game_list"
+      layoutId
+      variants={fadeIn}
+      initial="hidden"
+      animate="show"
+    >
+      {pathId && (
+        <motion.div>
+          <Gamedetail pathId={pathId} />
+        </motion.div>
+      )}
       {searched.length ? (
         <div className="searched">
           <h1>Searched Games</h1>
           <div className="games">
             {searched.map((game) => (
-              <Game
-                name={game.name}
-                released={game.released}
-                id={game.id}
-                image={game.background_image}
-                key={game.id}
-              />
+              <motion.div>
+                <Game
+                  name={game.name}
+                  released={game.released}
+                  id={game.id}
+                  image={game.background_image}
+                  key={game.id}
+                />
+              </motion.div>
             ))}
           </div>
         </div>
