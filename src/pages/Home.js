@@ -25,13 +25,7 @@ function Home() {
     (state) => state.games
   );
   return (
-    <div
-      className="game_list"
-      layoutId
-      variants={fadeIn}
-      initial="hidden"
-      animate="show"
-    >
+    <div className="game_list">
       {pathId && (
         <motion.div>
           <Gamedetail pathId={pathId} />

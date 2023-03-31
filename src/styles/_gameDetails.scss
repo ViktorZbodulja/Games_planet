@@ -45,13 +45,15 @@
 }
 .info {
     text-align: center;
+    flex-basis: 40%;
     h3 {
         color: white;
     }
 }
 .platforms {
     display: flex;
-    justify-content: space-evenly;
+    //justify-content: space-evenly;
+    max-width: 4rem;
     img {
         margin-left: 1.5rem;
     }
@@ -93,7 +95,7 @@
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     grid-column-gap: 0.5rem;
     grid-row-gap: 0.5rem;
-    padding: 0rem 5rem 3rem 5rem;  
+    padding: 0rem 5rem 3rem 5rem; 
 }
 .genre_container {
     margin-top: 2rem;
@@ -102,6 +104,6 @@
     display: inline;
     margin-right: 0.8rem;
     border: 2px solid white;
-    padding: 0.5rem 0.75rem;
+    padding: 0.25rem 0.5rem;
     font-size: 0.9rem;
 }

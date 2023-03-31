@@ -73,14 +73,20 @@ function Gamedetail({ pathId }) {
             <div className="stats">
               <div className="rating">
                 <motion.h3 layoutId={`title ${pathId}`}>{game.name}</motion.h3>
-                <h4>{game.publishers[0].name}</h4>
+                <div>
+                  {game.publishers && game.publishers.length > 0 && (
+                    <h4>{game.publishers[0].name}</h4>
+                  )}
+                </div>
                 <div className="rating_container">
                   {getStars()}
                   <p>({game.rating})</p>
                 </div>
                 <div className="genre_container">
-                  {game.genres.map((genre) => (
-                    <div className="genre">{genre.name}</div>
+                  {game.genres.map((genre, index) => (
+                    <div className="genre" key={index}>
+                      {genre.name}
+                    </div>
                   ))}
                 </div>
               </div>

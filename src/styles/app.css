@@ -138,6 +138,7 @@ input {
 
 .info {
   text-align: center;
+  flex-basis: 40%;
 }
 .info h3 {
   color: white;
@@ -145,7 +146,7 @@ input {
 
 .platforms {
   display: flex;
-  justify-content: space-evenly;
+  max-width: 4rem;
 }
 .platforms img {
   margin-left: 1.5rem;
@@ -199,7 +200,7 @@ input {
   display: inline;
   margin-right: 0.8rem;
   border: 2px solid white;
-  padding: 0.5rem 0.75rem;
+  padding: 0.25rem 0.5rem;
   font-size: 0.9rem;
 }
 
