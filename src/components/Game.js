@@ -27,7 +27,6 @@ function Game({ name, released, image, id }) {
     >
       <Link to={`/game/${id}`}>
         <motion.h3 layoutId={`title ${stringPathId}`}>{name}</motion.h3>
-
         <motion.img
           src={resizeImage(image, 640)}
           alt={name}

@@ -64,6 +64,7 @@ input {
   grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
   grid-column-gap: 3rem;
   grid-row-gap: 5rem;
+  margin-bottom: 2rem;
 }
 
 .not_found {
@@ -138,7 +139,6 @@ input {
 
 .info {
   text-align: center;
-  flex-basis: 40%;
 }
 .info h3 {
   color: white;
@@ -146,10 +146,12 @@ input {
 
 .platforms {
   display: flex;
-  max-width: 4rem;
+  justify-content: space-evenly;
+  margin-top: 0.8rem;
 }
 .platforms img {
   margin-left: 1.5rem;
+  max-height: 4.5rem;
 }
 
 .media img {
@@ -207,6 +209,14 @@ input {
 .nav {
   padding: 3rem 5rem;
   text-align: center;
+  background-image: linear-gradient(0deg, #0f0f28 50px, rgba(31, 31, 31, 0.3) 50%), url("https://images5.alphacoders.com/540/540654.jpg");
+  min-height: 50vh;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-position: center -250px;
 }
 .nav input {
   width: 100%;
@@ -244,6 +254,7 @@ input {
 .logo h2 {
   padding-left: 0.5rem;
   padding-top: 0.4rem;
+  color: white;
 }
 
 .search {
@@ -251,4 +262,59 @@ input {
   width: 30%;
   margin-left: 35%;
   margin-top: 1rem;
+}
+
+@media (max-width: 1450px) {
+  .nav {
+    display: flex;
+    flex-direction: column;
+    align-content: space-around;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+  }
+  .search {
+    width: 55%;
+    margin-left: 0;
+  }
+}
+@media (max-width: 1150px) {
+  .search {
+    width: 65%;
+  }
+}
+@media (max-width: 860px) {
+  .search {
+    width: 85%;
+  }
+}
+@media (max-width: 700px) {
+  .search {
+    width: 95%;
+  }
+  .nav {
+    padding: 3rem;
+  }
+  .game_list {
+    padding: 0rem 3rem;
+  }
+  .game h3 {
+    padding: 1.5rem 0.5rem;
+  }
+}
+@media (max-width: 595px) {
+  .games {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
+  .game_list {
+    padding: 0rem 1rem;
+  }
+}
+@media (max-width: 380px) {
+  .game_list {
+    padding: 0rem 0.5rem;
+  }
+  .game_list h1 {
+    font-size: 2.5rem;
+    padding: 4rem 0rem 2rem 0rem;
+  }
 }/*# sourceMappingURL=app.css.map */

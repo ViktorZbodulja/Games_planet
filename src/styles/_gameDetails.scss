@@ -45,17 +45,17 @@
 }
 .info {
     text-align: center;
-    flex-basis: 40%;
     h3 {
         color: white;
     }
 }
 .platforms {
     display: flex;
-    //justify-content: space-evenly;
-    max-width: 4rem;
+    justify-content: space-evenly;
+    margin-top: 0.8rem;
     img {
         margin-left: 1.5rem;
+        max-height: 4.5rem;
     }
 }
 .media {
