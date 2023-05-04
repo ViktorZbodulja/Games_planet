@@ -53,6 +53,7 @@
     display: flex;
     justify-content: space-evenly;
     margin-top: 0.8rem;
+    margin-right: 0.5rem;
     img {
         margin-left: 1.5rem;
         max-height: 4.5rem;
@@ -98,6 +99,8 @@
     padding: 0rem 5rem 3rem 5rem; 
 }
 .genre_container {
+    display: flex;
+    flex-wrap: wrap;
     margin-top: 2rem;
 }
 .genre {
@@ -105,5 +108,6 @@
     margin-right: 0.8rem;
     border: 2px solid white;
     padding: 0.25rem 0.5rem;
+    margin-top: 0.5rem;
     font-size: 0.9rem;
 }

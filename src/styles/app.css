@@ -148,6 +148,7 @@ input {
   display: flex;
   justify-content: space-evenly;
   margin-top: 0.8rem;
+  margin-right: 0.5rem;
 }
 .platforms img {
   margin-left: 1.5rem;
@@ -195,6 +196,8 @@ input {
 }
 
 .genre_container {
+  display: flex;
+  flex-wrap: wrap;
   margin-top: 2rem;
 }
 
@@ -203,6 +206,7 @@ input {
   margin-right: 0.8rem;
   border: 2px solid white;
   padding: 0.25rem 0.5rem;
+  margin-top: 0.5rem;
   font-size: 0.9rem;
 }
 
@@ -277,6 +281,9 @@ input {
     width: 55%;
     margin-left: 0;
   }
+  .games {
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  }
 }
 @media (max-width: 1150px) {
   .search {
@@ -287,6 +294,7 @@ input {
   }
   .platforms {
     margin: 0;
+    transform: translate(-10px);
   }
   .platforms img {
     flex-basis: 15%;
@@ -328,7 +336,13 @@ input {
     margin-left: 1rem;
   }
   .media img {
+    max-width: 100%;
     min-height: 45vh;
+    -o-object-fit: cover;
+       object-fit: cover;
+  }
+  .genre_container {
+    margin-top: 1rem;
   }
 }
 @media (max-width: 700px) {
@@ -343,6 +357,12 @@ input {
   }
   .game h3 {
     padding: 1.5rem 0.5rem;
+  }
+  .description {
+    text-align: justify;
+  }
+  .stats {
+    padding: 2rem 1.5rem 0 1.5rem;
   }
 }
 @media (max-width: 595px) {
@@ -371,7 +391,31 @@ input {
     width: 50px;
   }
   .description {
-    margin: 4rem 2rem;
+    margin: 2rem 2rem;
+  }
+  .description p {
+    font-size: 1rem;
+  }
+  .rating_container img {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+  .rating_container p {
+    font-size: 1.2rem;
+  }
+  .stats h3 {
+    font-size: 1.5rem;
+  }
+  .gallery {
+    padding: 0rem 1.5rem 1.5rem 1.5rem;
+  }
+  .media img {
+    min-height: 51vh;
+  }
+}
+@media (max-width: 506px) {
+  .gallery {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   }
 }
 @media (max-width: 380px) {
@@ -381,5 +425,8 @@ input {
   .game_list h1 {
     font-size: 2.5rem;
     padding: 4rem 0rem 2rem 0rem;
+  }
+  .gallery {
+    padding: 0rem 0.7rem 0.7rem 0.7rem;
   }
 }/*# sourceMappingURL=app.css.map */
