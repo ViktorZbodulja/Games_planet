@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 //Redux
 import { useSelector } from "react-redux";
@@ -65,6 +65,14 @@ function Gamedetail({ pathId }) {
   //Data
   const { game, screen, isLoading } = useSelector((state) => state.detail);
 
+  const [showMore, setShowMore] = useState(false);
+  const toggleShowMore = () => {
+    setShowMore(!showMore);
+  };
+
+  const shortText =
+    game && game.description_raw ? game.description_raw.substring(0, 500) : ""; // without check, substring is erroring out
+  const fullText = game ? game.description_raw : "";
   return (
     <>
       {!isLoading && (
@@ -111,7 +119,12 @@ function Gamedetail({ pathId }) {
               />
             </div>
             <div className="description">
-              <p>{game.description_raw}</p>
+              <p>
+                {showMore ? fullText : shortText}
+                <button onClick={toggleShowMore} className="showMoreBtn">
+                  {showMore ? "Read less" : "Read more"}
+                </button>
+              </p>
             </div>
             <div className="gallery">
               {screen.results?.map((screen) => (

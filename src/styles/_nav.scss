@@ -39,6 +39,10 @@
         background: #ff7676;
         color: white;
         z-index: 2;
+        transition: all 0.4s ease-in-out;
+        &:hover {
+            background: #f85f5f;
+        }
     }
 }
 .logo {
