@@ -23,10 +23,10 @@ function Game({ name, released, image, id }) {
       layoutId={stringPathId}
       variants={popup}
       initial="hidden"
-      animate="show"
-    >
+      animate="show">
       <Link to={`/game/${id}`}>
         <motion.h3 layoutId={`title ${stringPathId}`}>{name}</motion.h3>
+        <h4>{released}</h4>
         <motion.img
           src={resizeImage(image, 640)}
           alt={name}

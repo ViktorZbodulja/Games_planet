@@ -8,7 +8,6 @@ import Game from "../components/Game";
 //Animation
 import { motion } from "framer-motion";
 import { useLocation } from "react-router-dom";
-import { fadeIn } from "../animations";
 
 function Home() {
   //get current location

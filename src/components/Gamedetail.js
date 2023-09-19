@@ -128,11 +128,13 @@ function Gamedetail({ pathId }) {
             </div>
             <div className="gallery">
               {screen.results?.map((screen) => (
-                <img
-                  src={resizeImage(screen.image, 1280)}
-                  key={screen.id}
-                  alt={screen.image}
-                />
+                <motion.div>
+                  <img
+                    src={resizeImage(screen.image, 1280)}
+                    key={screen.id}
+                    alt={screen.image}
+                  />
+                </motion.div>
               ))}
             </div>
           </motion.div>
