@@ -4,6 +4,7 @@ import {
   upcomingGamesURL,
   newGamesURL,
   searchedGameURL,
+  platformFilter,
 } from "../api";
 
 //ACTION CREATOR
@@ -20,12 +21,6 @@ export const loadGames = () => async (dispatch) => {
       newGames: newGamesData.data.results,
     },
   });
-
-  /* 
-    axios.get(popularGamesURL())
-    .then(data => {
-
-    }) */
 };
 export const fetchSearch = (game_name) => async (dispatch) => {
   const searchGames = await axios.get(searchedGameURL(game_name));
@@ -33,6 +28,15 @@ export const fetchSearch = (game_name) => async (dispatch) => {
     type: "FETCH_SEARCHED",
     payload: {
       searched: searchGames.data.results,
+    },
+  });
+};
+export const fetchPlatform = (platformId) => async (dispatch) => {
+  const platformGames = await axios.get(platformFilter(platformId));
+  dispatch({
+    type: "PLATFORM_FILTER",
+    payload: {
+      platformPopular: platformGames.data.results,
     },
   });
 };

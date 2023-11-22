@@ -3,6 +3,7 @@ import Gamedetail from "../components/Gamedetail";
 //Redux
 import { useDispatch, useSelector } from "react-redux";
 import { loadGames } from "../actions/gamesAction";
+import { fetchPlatform } from "../actions/gamesAction";
 //Components
 import Game from "../components/Game";
 //Animation
@@ -20,11 +21,17 @@ function Home() {
   }, [dispatch]);
 
   //geting data back from the store
-  const { popular, newGames, upcoming, searched } = useSelector(
-    (state) => state.games
-  );
+  const { popular, newGames, upcoming, searched, platformPopular } =
+    useSelector((state) => state.games);
+
+  //filter by platform
+  const filterByPlatform = (platformId) => {
+    dispatch(fetchPlatform(platformId));
+  };
+  //https://api.rawg.io/api/games?key=3d47e9c894c049e0aa8a3715acbdccd6&dates=2019-09-01,2019-09-30&ordering=-added&page_size=10&platform=186
   return (
     <div className="game_list">
+      <button onClick={() => filterByPlatform(1)}>Play Station 5</button>
       {pathId && (
         <motion.div>
           <Gamedetail pathId={pathId} />
@@ -65,7 +72,7 @@ function Home() {
       </div>
       <h1>Popular Games</h1>
       <div className="games">
-        {popular.map((game) => (
+        {(platformPopular || popular).map((game) => (
           <Game
             name={game.name}
             released={game.released}
