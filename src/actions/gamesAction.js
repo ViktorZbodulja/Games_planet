@@ -4,7 +4,7 @@ import {
   upcomingGamesURL,
   newGamesURL,
   searchedGameURL,
-  platformFilter,
+  platformFilterURL,
 } from "../api";
 
 //ACTION CREATOR
@@ -32,11 +32,11 @@ export const fetchSearch = (game_name) => async (dispatch) => {
   });
 };
 export const fetchPlatform = (platformId) => async (dispatch) => {
-  const platformGames = await axios.get(platformFilter(platformId));
+  const platformGames = await axios.get(platformFilterURL(platformId));
   dispatch({
     type: "PLATFORM_FILTER",
     payload: {
-      platformPopular: platformGames.data.results,
+      platformUpcoming: platformGames.data.results,
     },
   });
 };

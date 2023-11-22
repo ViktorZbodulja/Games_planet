@@ -3,9 +3,9 @@ const initState = {
   newGames: [],
   upcoming: [],
   searched: [],
+  platformUpcoming: [],
   platformPopular: [],
   platformNewGames: [],
-  platformUpcoming: [],
 };
 
 const gamesReducer = (state = initState, action) => {
@@ -25,7 +25,7 @@ const gamesReducer = (state = initState, action) => {
     case "PLATFORM_FILTER":
       return {
         ...state,
-        platformPopular: action.payload.platformPopular,
+        platformUpcoming: action.payload.platformUpcoming,
       };
     case "CLEAR_SEARCH":
       return {

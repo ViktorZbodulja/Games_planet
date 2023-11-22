@@ -21,7 +21,7 @@ function Home() {
   }, [dispatch]);
 
   //geting data back from the store
-  const { popular, newGames, upcoming, searched, platformPopular } =
+  const { popular, newGames, upcoming, searched, platformUpcoming } =
     useSelector((state) => state.games);
 
   //filter by platform
@@ -29,9 +29,17 @@ function Home() {
     dispatch(fetchPlatform(platformId));
   };
   //https://api.rawg.io/api/games?key=3d47e9c894c049e0aa8a3715acbdccd6&dates=2019-09-01,2019-09-30&ordering=-added&page_size=10&platform=186
+
   return (
     <div className="game_list">
-      <button onClick={() => filterByPlatform(1)}>Play Station 5</button>
+      <button onClick={() => filterByPlatform(187)}>Play Station 5</button>
+      <button onClick={() => filterByPlatform(18)}>Play Station 4</button>
+      <button onClick={() => filterByPlatform(4)}>Steam</button>
+      <button onClick={() => filterByPlatform(1)}>XBOX-ONE</button>
+      <button onClick={() => filterByPlatform(186)}>XBOX</button>
+      {/*<button onClick={() => filterByPlatform(11)}>Nintendo Wii</button>*/}
+      <button onClick={() => filterByPlatform(7)}>Nintendo Switch</button>
+      <button onClick={() => filterByPlatform(5)}>macOS</button>
       {pathId && (
         <motion.div>
           <Gamedetail pathId={pathId} />
@@ -60,7 +68,10 @@ function Home() {
 
       <h1>Upcoming Games</h1>
       <div className="games">
-        {upcoming.map((game) => (
+        {(platformUpcoming && platformUpcoming.length > 0
+          ? platformUpcoming
+          : upcoming
+        ).map((game) => (
           <Game
             name={game.name}
             released={game.released}
@@ -72,7 +83,7 @@ function Home() {
       </div>
       <h1>Popular Games</h1>
       <div className="games">
-        {(platformPopular || popular).map((game) => (
+        {popular.map((game) => (
           <Game
             name={game.name}
             released={game.released}

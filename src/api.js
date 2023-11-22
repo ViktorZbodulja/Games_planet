@@ -45,5 +45,5 @@ export const gameScreenshotURL = (game_id) =>
 export const searchedGameURL = (game_name) =>
   `${base_url}games?key=3d47e9c894c049e0aa8a3715acbdccd6&search=${game_name}&page_size=10`;
 
-export const platformFilter = (platformId) =>
-  `${base_url}${upcoming_games}&platform=${platformId}`;
+export const platformFilterURL = (platformId) =>
+  `${base_url}games?key=3d47e9c894c049e0aa8a3715acbdccd6&dates=${currentDate},${nextYear}&ordering=-added&page_size=10&platforms=${platformId}`;
