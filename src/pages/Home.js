@@ -3,6 +3,7 @@ import Gamedetail from "../components/Gamedetail";
 //Redux
 import { useDispatch, useSelector } from "react-redux";
 import { loadGames } from "../actions/gamesAction";
+import { fetchPlatform } from "../actions/gamesAction";
 //Components
 import Game from "../components/Game";
 //Animation
@@ -20,11 +21,40 @@ function Home() {
   }, [dispatch]);
 
   //geting data back from the store
-  const { popular, newGames, upcoming, searched } = useSelector(
-    (state) => state.games
-  );
+  const {
+    popular,
+    newGames,
+    upcoming,
+    searched,
+    platformUpcoming,
+    platformPopular,
+    platformNewGames,
+  } = useSelector((state) => state.games);
+
+  //filter by platform
+  const filterByPlatform = (platformId) => {
+    dispatch(fetchPlatform(platformId));
+  };
+  //https://api.rawg.io/api/games?key=3d47e9c894c049e0aa8a3715acbdccd6&dates=2019-09-01,2019-09-30&ordering=-added&page_size=10&platform=186
+  const clearPlatforms = () => {
+    dispatch({ type: "CLEAR_PLATFORMS" });
+  };
+
   return (
     <div className="game_list">
+      <div className="platforms_container">
+        <h2>Platforms:</h2>
+        <div className="buttons">
+          <button onClick={() => clearPlatforms()}>All</button>
+          <button onClick={() => filterByPlatform(187)}>Play Station 5</button>
+          <button onClick={() => filterByPlatform(18)}>Play Station 4</button>
+          <button onClick={() => filterByPlatform(4)}>Steam</button>
+          <button onClick={() => filterByPlatform(1)}>XBOX-ONE</button>
+          <button onClick={() => filterByPlatform(186)}>XBOX</button>
+          <button onClick={() => filterByPlatform(7)}>Nintendo SW</button>
+          <button onClick={() => filterByPlatform(5)}>macOS</button>
+        </div>
+      </div>
       {pathId && (
         <motion.div>
           <Gamedetail pathId={pathId} />
@@ -53,7 +83,10 @@ function Home() {
 
       <h1>Upcoming Games</h1>
       <div className="games">
-        {upcoming.map((game) => (
+        {(platformUpcoming && platformUpcoming.length > 0
+          ? platformUpcoming
+          : upcoming
+        ).map((game) => (
           <Game
             name={game.name}
             released={game.released}
@@ -65,7 +98,10 @@ function Home() {
       </div>
       <h1>Popular Games</h1>
       <div className="games">
-        {popular.map((game) => (
+        {(platformPopular && platformPopular.length > 0
+          ? platformPopular
+          : popular
+        ).map((game) => (
           <Game
             name={game.name}
             released={game.released}
@@ -77,7 +113,10 @@ function Home() {
       </div>
       <h1>New Games</h1>
       <div className="games">
-        {newGames.map((game) => (
+        {(platformNewGames && platformNewGames.length > 0
+          ? platformNewGames
+          : newGames
+        ).map((game) => (
           <Game
             name={game.name}
             released={game.released}

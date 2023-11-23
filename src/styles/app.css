@@ -53,13 +53,74 @@ input {
 
 .game_list {
   padding: 0rem 5rem;
+  background-color: #0C0B21;
 }
 .game_list h1 {
   padding: 5rem 0rem;
+  color: white;
+}
+
+.platforms_container {
+  padding-top: 2rem;
+}
+.platforms_container h2 {
+  color: white;
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+.platforms_container .buttons {
+  margin-top: 1rem;
+}
+.platforms_container .buttons button {
+  align-items: center;
+  background-color: #fff;
+  border: 1px solid #171717;
+  box-sizing: border-box;
+  color: #000;
+  cursor: pointer;
+  display: inline-flex;
+  fill: #000;
+  font-family: Inter, sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  height: 48px;
+  justify-content: center;
+  letter-spacing: -0.8px;
+  line-height: 24px;
+  min-width: 140px;
+  outline: 0;
+  padding: 0 17px;
+  text-align: center;
+  text-decoration: none;
+  transition: all 0.3s;
+  -moz-user-select: none;
+       user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  margin-right: 0.3rem;
+}
+.platforms_container .buttons button:focus {
+  color: #171e29;
+}
+.platforms_container .buttons button:hover {
+  border-color: rgb(4, 189, 189);
+  color: white;
+  fill: rgb(4, 189, 189);
+  background-color: rgb(4, 189, 189);
+}
+.platforms_container .buttons button:active {
+  border-color: rgb(4, 189, 189);
+  color: white;
+  fill: rgb(4, 189, 189);
+  background-color: rgb(4, 189, 189);
+}
+@media (min-width: 768px) {
+  .platforms_container .buttons button {
+    min-width: 170px;
+  }
 }
 
 .games {
-  min-height: 80vh;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
   grid-column-gap: 3rem;
@@ -75,6 +136,7 @@ input {
 .game {
   min-height: 30vh;
   box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.2);
+  background-color: #161530;
   text-align: center;
   border-radius: 1rem;
   cursor: pointer;
@@ -82,17 +144,19 @@ input {
 }
 .game img {
   width: 100%;
-  min-height: 40vh;
+  height: 40vh;
   -o-object-fit: cover;
      object-fit: cover;
 }
 .game h3 {
   padding: 1.5rem 0rem;
+  color: white;
 }
 .game h4 {
   margin-bottom: 1rem;
   font-size: 1.1rem;
   font-weight: 200;
+  color: white;
 }
 
 .card_shadow {
@@ -230,8 +294,9 @@ input {
   padding: 3rem 5rem;
   text-align: center;
   background-image: linear-gradient(0deg, #0f0f28 50px, rgba(31, 31, 31, 0.3) 50%), url("https://images5.alphacoders.com/540/540654.jpg");
-  min-height: 50vh;
+  min-height: 45vh;
   background-attachment: fixed;
+  background-image: linear-gradient(0deg, #0f0f28 50px, rgba(31, 31, 31, 0.3) 50%), url("https://cdn.wallpapersafari.com/43/55/IvnKSm.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-position: center;
@@ -257,13 +322,13 @@ input {
   border-radius: 25px;
   padding: 0.5rem 2rem;
   cursor: pointer;
-  background: #ff7676;
+  background: rgb(2, 217, 217);
   color: white;
   z-index: 2;
   transition: all 0.4s ease-in-out;
 }
 .nav button:hover {
-  background: #f85f5f;
+  background: rgb(4, 189, 189);
 }
 
 .logo {

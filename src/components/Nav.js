@@ -17,8 +17,10 @@ function Nav() {
 
   const submitSearch = (e) => {
     e.preventDefault();
-    dispatch(fetchSearch(textInput));
-    setTextInput("");
+    if (textInput.trim() !== "") {
+      dispatch(fetchSearch(textInput));
+      setTextInput("");
+    }
   };
   const clearSearched = () => {
     dispatch({ type: "CLEAR_SEARCH" });
@@ -29,8 +31,7 @@ function Nav() {
       className="nav"
       variants={fadeIn}
       initial="hidden"
-      animate="show"
-    >
+      animate="show">
       <div className="logo" onClick={clearSearched}>
         <img src={logo} alt="logo" />
         <h2>Games Planet</h2>
