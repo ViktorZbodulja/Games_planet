@@ -24,7 +24,7 @@ const currentMonth = getCurrentMonth();
 const currentDay = getCurrentDay();
 const currentDate = `${currentYear}-${currentMonth}-${currentDay}`;
 const lastYear = `${currentYear - 1}-${currentMonth}-${currentDay}`;
-const nextYear = `${currentYear + 1}-${currentMonth}-${currentDay}`;
+const nextYear = `${currentYear + 2}-${currentMonth}-${currentDay}`;
 
 //Popular games
 //Fetching from last year to current date
@@ -45,5 +45,12 @@ export const gameScreenshotURL = (game_id) =>
 export const searchedGameURL = (game_name) =>
   `${base_url}games?key=3d47e9c894c049e0aa8a3715acbdccd6&search=${game_name}&page_size=10`;
 
-export const platformFilterURL = (platformId) =>
+//platform filters
+export const platformUpcomingURL = (platformId) =>
   `${base_url}games?key=3d47e9c894c049e0aa8a3715acbdccd6&dates=${currentDate},${nextYear}&ordering=-added&page_size=10&platforms=${platformId}`;
+
+export const platformPopularURL = (platformId) =>
+  `${base_url}${popular_games}&platforms=${platformId}`;
+
+export const platformNewgamesURL = (platformId) =>
+  `${base_url}${new_games}&platforms=${platformId}`;

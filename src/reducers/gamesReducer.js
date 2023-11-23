@@ -26,11 +26,20 @@ const gamesReducer = (state = initState, action) => {
       return {
         ...state,
         platformUpcoming: action.payload.platformUpcoming,
+        platformPopular: action.payload.platformPopular,
+        platformNewGames: action.payload.platformNewGames,
       };
     case "CLEAR_SEARCH":
       return {
         ...state,
         searched: [],
+      };
+    case "CLEAR_PLATFORMS":
+      return {
+        ...state,
+        platformUpcoming: [],
+        platformPopular: [],
+        platformNewGames: [],
       };
     default:
       return { ...state };

@@ -55,9 +55,10 @@
           }
           
           button:active {
-            border-color: #06f;
-            color: #06f;
-            fill: #06f;
+            border-color: rgb(4, 189, 189);
+            color: white;
+            fill: rgb(4, 189, 189);
+            background-color: rgb(4, 189, 189);
           }
           
           @media (min-width: 768px) {
