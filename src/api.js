@@ -54,3 +54,13 @@ export const platformPopularURL = (platformId) =>
 
 export const platformNewgamesURL = (platformId) =>
   `${base_url}${new_games}&platforms=${platformId}`;
+
+//genre filters
+export const genreUpcomingURL = (genreId) =>
+  `${base_url}games?key=3d47e9c894c049e0aa8a3715acbdccd6&dates=${currentDate},${nextYear}&ordering=-added&page_size=10&genres=${genreId}`;
+
+export const genrePopularURL = (genreId) =>
+  `${base_url}${popular_games}&genres=${genreId}`;
+
+export const genreNewgamesURL = (genreId) =>
+  `${base_url}${new_games}&genres=${genreId}`;

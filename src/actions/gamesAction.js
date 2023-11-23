@@ -7,6 +7,9 @@ import {
   platformUpcomingURL,
   platformPopularURL,
   platformNewgamesURL,
+  genreUpcomingURL,
+  genrePopularURL,
+  genreNewgamesURL,
 } from "../api";
 
 //ACTION CREATOR
@@ -43,6 +46,19 @@ export const fetchPlatform = (platformId) => async (dispatch) => {
       platformUpcoming: platformUpcoming.data.results,
       platformPopular: platformPopular.data.results,
       platformNewGames: platformNew.data.results,
+    },
+  });
+};
+export const fetchGenre = (genreId) => async (dispatch) => {
+  const genreUpcoming = await axios.get(genreUpcomingURL(genreId));
+  const genrePopular = await axios.get(genrePopularURL(genreId));
+  const genreNew = await axios.get(genreNewgamesURL(genreId));
+  dispatch({
+    type: "GENRE_FILTER",
+    payload: {
+      genreUpcoming: genreUpcoming.data.results,
+      genrePopular: genrePopular.data.results,
+      genreNewGames: genreNew.data.results,
     },
   });
 };
