@@ -1,11 +1,13 @@
 .game_list {
     padding: 0rem 5rem;
+    background-color: #0C0B21;
     h1 {
         padding: 5rem 0rem;
+        color: white;
     }
 }
 .games {
-    min-height: 80vh;
+    //min-height: 80vh;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
     grid-column-gap: 3rem;

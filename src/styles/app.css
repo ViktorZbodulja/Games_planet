@@ -53,13 +53,14 @@ input {
 
 .game_list {
   padding: 0rem 5rem;
+  background-color: #0C0B21;
 }
 .game_list h1 {
   padding: 5rem 0rem;
+  color: white;
 }
 
 .games {
-  min-height: 80vh;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
   grid-column-gap: 3rem;
@@ -75,6 +76,7 @@ input {
 .game {
   min-height: 30vh;
   box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.2);
+  background-color: #161530;
   text-align: center;
   border-radius: 1rem;
   cursor: pointer;
@@ -82,17 +84,19 @@ input {
 }
 .game img {
   width: 100%;
-  min-height: 40vh;
+  height: 40vh;
   -o-object-fit: cover;
      object-fit: cover;
 }
 .game h3 {
   padding: 1.5rem 0rem;
+  color: white;
 }
 .game h4 {
   margin-bottom: 1rem;
   font-size: 1.1rem;
   font-weight: 200;
+  color: white;
 }
 
 .card_shadow {
