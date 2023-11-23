@@ -32,14 +32,18 @@ function Home() {
 
   return (
     <div className="game_list">
-      <button onClick={() => filterByPlatform(187)}>Play Station 5</button>
-      <button onClick={() => filterByPlatform(18)}>Play Station 4</button>
-      <button onClick={() => filterByPlatform(4)}>Steam</button>
-      <button onClick={() => filterByPlatform(1)}>XBOX-ONE</button>
-      <button onClick={() => filterByPlatform(186)}>XBOX</button>
-      {/*<button onClick={() => filterByPlatform(11)}>Nintendo Wii</button>*/}
-      <button onClick={() => filterByPlatform(7)}>Nintendo Switch</button>
-      <button onClick={() => filterByPlatform(5)}>macOS</button>
+      <div className="platforms_container">
+        <h2>Platforms:</h2>
+        <div className="buttons">
+          <button onClick={() => filterByPlatform(187)}>Play Station 5</button>
+          <button onClick={() => filterByPlatform(18)}>Play Station 4</button>
+          <button onClick={() => filterByPlatform(4)}>Steam</button>
+          <button onClick={() => filterByPlatform(1)}>XBOX-ONE</button>
+          <button onClick={() => filterByPlatform(186)}>XBOX</button>
+          <button onClick={() => filterByPlatform(7)}>Nintendo SW</button>
+          <button onClick={() => filterByPlatform(5)}>macOS</button>
+        </div>
+      </div>
       {pathId && (
         <motion.div>
           <Gamedetail pathId={pathId} />
