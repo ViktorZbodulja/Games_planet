@@ -49,9 +49,15 @@ function Home() {
   return (
     <div className="home">
       <div className="genre_container_home">
+        <h2>Genres</h2>
         <button onClick={() => filterByGenres(4)}>Action</button>
         <button onClick={() => filterByGenres(3)}>Adventure</button>
         <button onClick={() => filterByGenres(5)}>RPG</button>
+        <button onClick={() => filterByGenres(2)}>Shooter</button>
+        <button onClick={() => filterByGenres(83)}>Platformer</button>
+        <button onClick={() => filterByGenres(10)}>Strategy</button>
+        <button onClick={() => filterByGenres(7)}>Puzzle</button>
+        <button onClick={() => filterByGenres(51)}>Indie</button>
       </div>
 
       <div className="game_list">

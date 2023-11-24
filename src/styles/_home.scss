@@ -6,8 +6,15 @@
 .genre_container_home {
   flex-basis: 10%;
   flex-direction: column;
-  padding-top: 20rem;
+  padding-top: 22rem;
   text-align: right;
+  h2 {
+    color: white;
+    text-align: left;
+    margin: 0 0 1rem 1.4rem;
+    font-size: 1.4rem;
+    font-weight: 600;
+  }
   button {
     align-items: center;
     background-color: transparent;
@@ -35,6 +42,29 @@
     -webkit-user-select: none;
     touch-action: manipulation;
     margin-right: 0.3rem;
+  }
+  button:focus {
+    color: rgb(3, 234, 234);
+  }
+  
+  button:hover {
+    border-color: rgb(4, 189, 189);
+    color: white;
+    fill: rgb(4, 189, 189);
+    background-color: rgb(1, 121, 121);
+  }
+  
+  button:active {
+    border-color: rgb(4, 189, 189);
+    color: white;
+    fill: rgb(4, 189, 189);
+    background-color: rgb(4, 189, 189);
+  }
+  
+  @media (min-width: 768px) {
+    button {
+      min-width: 170px;
+    }
   }
 }
 .game_list {

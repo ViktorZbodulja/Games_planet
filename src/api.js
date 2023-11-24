@@ -43,7 +43,7 @@ export const gameScreenshotURL = (game_id) =>
   `${base_url}games/${game_id}/screenshots?&key=3d47e9c894c049e0aa8a3715acbdccd6`;
 //Searched Game
 export const searchedGameURL = (game_name) =>
-  `${base_url}games?key=18bdfd53d8b045a6b123038c2e3e6f9a&search=${game_name}&page_size=10`;
+  `${base_url}games?key=3d47e9c894c049e0aa8a3715acbdccd6&search=${game_name}&ordering=-rating&page_size=10`;
 
 //platform filters
 export const platformUpcomingURL = (platformId) =>
