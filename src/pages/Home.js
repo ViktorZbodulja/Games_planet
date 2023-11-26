@@ -37,9 +37,12 @@ function Home() {
   //filter by platform
   const filterByPlatform = (platformId) => {
     dispatch(fetchPlatform(platformId));
+    dispatch({ type: "CLEAR_SEARCH" });
   };
   const filterByGenres = (genreId) => {
     dispatch(fetchGenre(genreId));
+    dispatch({ type: "CLEAR_PLATFORMS" });
+    dispatch({ type: "CLEAR_SEARCH" });
   };
   //https://api.rawg.io/api/games?key=3d47e9c894c049e0aa8a3715acbdccd6&dates=2019-09-01,2019-09-30&ordering=-added&page_size=10&platform=186
   const clearPlatforms = () => {
@@ -56,6 +59,8 @@ function Home() {
         <button onClick={() => filterByGenres(2)}>Shooter</button>
         <button onClick={() => filterByGenres(83)}>Platformer</button>
         <button onClick={() => filterByGenres(10)}>Strategy</button>
+        <button onClick={() => filterByGenres(15)}>Sport</button>
+        <button onClick={() => filterByGenres(1)}>Racing</button>
         <button onClick={() => filterByGenres(7)}>Puzzle</button>
         <button onClick={() => filterByGenres(51)}>Indie</button>
       </div>

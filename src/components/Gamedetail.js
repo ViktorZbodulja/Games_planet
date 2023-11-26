@@ -128,7 +128,7 @@ function Gamedetail({ pathId }) {
             </div>
             <div className="gallery">
               {screen.results?.map((screen) => (
-                <motion.div>
+                <motion.div key={`${game.id}-${screen.id}`}>
                   <img
                     src={resizeImage(screen.image, 1280)}
                     key={screen.id}
