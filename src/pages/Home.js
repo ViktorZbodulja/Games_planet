@@ -38,6 +38,7 @@ function Home() {
   const filterByPlatform = (platformId) => {
     dispatch(fetchPlatform(platformId));
     dispatch({ type: "CLEAR_SEARCH" });
+    dispatch({ type: "CLEAR_GENRES" });
   };
   const filterByGenres = (genreId) => {
     dispatch(fetchGenre(genreId));
@@ -45,8 +46,10 @@ function Home() {
     dispatch({ type: "CLEAR_SEARCH" });
   };
   //https://api.rawg.io/api/games?key=3d47e9c894c049e0aa8a3715acbdccd6&dates=2019-09-01,2019-09-30&ordering=-added&page_size=10&platform=186
-  const clearPlatforms = () => {
+  const clearAll = () => {
     dispatch({ type: "CLEAR_PLATFORMS" });
+    dispatch({ type: "CLEAR_GENRES" });
+    dispatch({ type: "CLEAR_SEARCH" });
   };
 
   return (
@@ -64,19 +67,18 @@ function Home() {
         <button onClick={() => filterByGenres(7)}>Puzzle</button>
         <button onClick={() => filterByGenres(51)}>Indie</button>
       </div>
-
       <div className="game_list">
         <div className="platforms_container">
           <h2>Platforms:</h2>
           <div className="buttons">
-            <button onClick={() => clearPlatforms()}>All</button>
+            <button onClick={() => clearAll()}>All</button>
             <button onClick={() => filterByPlatform(187)}>
               Play Station 5
             </button>
             <button onClick={() => filterByPlatform(18)}>Play Station 4</button>
             <button onClick={() => filterByPlatform(4)}>Steam</button>
             <button onClick={() => filterByPlatform(1)}>XBOX-ONE</button>
-            <button onClick={() => filterByPlatform(186)}>XBOX</button>
+            <button onClick={() => filterByPlatform(186)}>XBOX S/X</button>
             <button onClick={() => filterByPlatform(7)}>Nintendo SW</button>
             <button onClick={() => filterByPlatform(5)}>macOS</button>
           </div>
@@ -91,15 +93,31 @@ function Home() {
             <h1>Searched Games</h1>
             <div className="games">
               {searched.map((game) => (
-                <motion.div>
-                  <Game
-                    name={game.name}
-                    released={game.released}
-                    id={game.id}
-                    image={game.background_image}
-                    key={game.id}
-                  />
-                </motion.div>
+                <Game
+                  name={game.name}
+                  released={game.released}
+                  id={game.id}
+                  image={game.background_image}
+                  key={game.id}
+                />
+              ))}
+            </div>
+          </div>
+        ) : (
+          ""
+        )}
+        {genrePopular.length ? (
+          <div className="searched">
+            <h1>Genre Games</h1>
+            <div className="games">
+              {genrePopular.map((game) => (
+                <Game
+                  name={game.name}
+                  released={game.released}
+                  id={game.id}
+                  image={game.background_image}
+                  key={game.id}
+                />
               ))}
             </div>
           </div>
