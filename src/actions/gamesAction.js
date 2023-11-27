@@ -62,3 +62,7 @@ export const fetchGenre = (genreId) => async (dispatch) => {
     },
   });
 };
+export const selectPlatform = (platformName) => ({
+  type: "SELECT_PLATFORM",
+  payload: platformName,
+});

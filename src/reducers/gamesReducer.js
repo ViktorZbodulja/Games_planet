@@ -9,6 +9,7 @@ const initState = {
   genreUpcoming: [],
   genrePopular: [],
   genreNewGames: [],
+  selectedPlatform: null,
 };
 
 const gamesReducer = (state = initState, action) => {
@@ -38,6 +39,11 @@ const gamesReducer = (state = initState, action) => {
         genreUpcoming: action.payload.genreUpcoming,
         genrePopular: action.payload.genrePopular,
         genreNewGames: action.payload.genreNewGames,
+      };
+    case "SELECT_PLATFORM":
+      return {
+        ...state,
+        selectedPlatform: action.payload,
       };
     case "CLEAR_SEARCH":
       return {

@@ -1,9 +1,13 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Gamedetail from "../components/Gamedetail";
 //Redux
 import { useDispatch, useSelector } from "react-redux";
 import { loadGames } from "../actions/gamesAction";
-import { fetchPlatform, fetchGenre } from "../actions/gamesAction";
+import {
+  fetchPlatform,
+  fetchGenre,
+  selectPlatform,
+} from "../actions/gamesAction";
 //Components
 import Game from "../components/Game";
 //Animation
@@ -20,6 +24,16 @@ function Home() {
     dispatch(loadGames());
   }, [dispatch]);
 
+  const [platformNameMap, setPlatformNameMap] = useState({
+    187: "Play Station 5",
+    18: "Play Station 4",
+    4: "Steam",
+    1: "XBOX-ONE",
+    186: "XBOX S/X",
+    7: "Nintendo SW",
+    5: "macOS",
+  });
+
   //geting data back from the store
   const {
     popular,
@@ -32,11 +46,13 @@ function Home() {
     genreUpcoming,
     genrePopular,
     genreNewGames,
+    selectedPlatform,
   } = useSelector((state) => state.games);
 
   //filter by platform
   const filterByPlatform = (platformId) => {
     dispatch(fetchPlatform(platformId));
+    dispatch(selectPlatform(platformNameMap[platformId]));
     dispatch({ type: "CLEAR_SEARCH" });
     dispatch({ type: "CLEAR_GENRES" });
   };
@@ -84,9 +100,9 @@ function Home() {
           </div>
         </div>
         {pathId && (
-          <motion.div>
+          <div>
             <Gamedetail pathId={pathId} />
-          </motion.div>
+          </div>
         )}
         {searched.length ? (
           <div className="searched">
@@ -106,11 +122,14 @@ function Home() {
         ) : (
           ""
         )}
-        {genrePopular.length ? (
+        {platformPopular.length ? (
           <div className="searched">
-            <h1>Genre Games</h1>
+            <h1>
+              {selectedPlatform ? `Popular ${selectedPlatform} games` : ""}
+              {/*  {selectedGenre ? `Genre: ${selectedGenre}` : ""}*/}
+            </h1>
             <div className="games">
-              {genrePopular.map((game) => (
+              {platformPopular.map((game) => (
                 <Game
                   name={game.name}
                   released={game.released}
