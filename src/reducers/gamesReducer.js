@@ -64,6 +64,12 @@ const gamesReducer = (state = initState, action) => {
         genrePopular: [],
         genreNewGames: [],
       };
+    case "CLEAR_SELECTED_PLATFORM":
+      return {
+        ...state,
+        selectedPlatform: null,
+      };
+
     default:
       return { ...state };
   }

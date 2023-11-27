@@ -60,12 +60,14 @@ function Home() {
     dispatch(fetchGenre(genreId));
     dispatch({ type: "CLEAR_PLATFORMS" });
     dispatch({ type: "CLEAR_SEARCH" });
+    dispatch({ type: "CLEAR_SELECTED_PLATFORM" });
   };
   //https://api.rawg.io/api/games?key=3d47e9c894c049e0aa8a3715acbdccd6&dates=2019-09-01,2019-09-30&ordering=-added&page_size=10&platform=186
   const clearAll = () => {
     dispatch({ type: "CLEAR_PLATFORMS" });
     dispatch({ type: "CLEAR_GENRES" });
     dispatch({ type: "CLEAR_SEARCH" });
+    dispatch({ type: "CLEAR_SELECTED_PLATFORM" });
   };
 
   return (
@@ -106,7 +108,7 @@ function Home() {
         )}
         {searched.length ? (
           <div className="searched">
-            <h1>Searched Games</h1>
+            <h1 className="games_h1">Searched Games</h1>
             <div className="games">
               {searched.map((game) => (
                 <Game
@@ -122,11 +124,11 @@ function Home() {
         ) : (
           ""
         )}
-        {platformPopular.length ? (
+        {/* {platformPopular.length ? (
           <div className="searched">
             <h1>
               {selectedPlatform ? `Popular ${selectedPlatform} games` : ""}
-              {/*  {selectedGenre ? `Genre: ${selectedGenre}` : ""}*/}
+               {selectedGenre ? `Genre: ${selectedGenre}` : ""}
             </h1>
             <div className="games">
               {platformPopular.map((game) => (
@@ -142,9 +144,13 @@ function Home() {
           </div>
         ) : (
           ""
-        )}
+        )} */}
 
-        <h1>Upcoming Games</h1>
+        <h1 className="games_h1">
+          {selectedPlatform
+            ? `Upcoming ${selectedPlatform} games`
+            : "Upcoming Games"}
+        </h1>
         <div className="games">
           {(platformUpcoming.length ? platformUpcoming : upcoming).map(
             (game) => (
@@ -158,7 +164,11 @@ function Home() {
             )
           )}
         </div>
-        <h1>Popular Games</h1>
+        <h1 className="games_h1">
+          {selectedPlatform
+            ? `Popular ${selectedPlatform} games`
+            : "Popular Games"}
+        </h1>
         <div className="games">
           {(platformPopular.length ? platformPopular : popular).map((game) => (
             <Game
@@ -170,7 +180,9 @@ function Home() {
             />
           ))}
         </div>
-        <h1>New Games</h1>
+        <h1 className="games_h1">
+          {selectedPlatform ? `New ${selectedPlatform} games` : "New Games"}
+        </h1>
         <div className="games">
           {(platformNewGames.length ? platformNewGames : newGames).map(
             (game) => (
