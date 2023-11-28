@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 //Redux
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { resizeImage } from "../util";
+import { resizeImage } from "../utils/util";
 //Images
 import playstation5 from "../img/playstation5.svg";
 import playstation4 from "../img/playstation4.svg";

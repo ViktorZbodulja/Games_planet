@@ -7,12 +7,14 @@ import {
   fetchPlatform,
   fetchGenre,
   selectPlatform,
+  selectGenre,
 } from "../actions/gamesAction";
 //Components
 import Game from "../components/Game";
 //Animation
-import { motion } from "framer-motion";
 import { useLocation } from "react-router-dom";
+//header function
+import { generateHeader } from "../utils/headerUtil";
 
 function Home() {
   //get current location
@@ -33,6 +35,18 @@ function Home() {
     7: "Nintendo SW",
     5: "macOS",
   });
+  const [genreNameMap, SetgenreNameMap] = useState({
+    4: "Action",
+    3: "Adventure",
+    5: "RPG",
+    2: "Shooter",
+    83: "Platformer",
+    10: "Strategy",
+    15: "Sport",
+    1: "Racing",
+    7: "Puzzle",
+    51: "Indie",
+  });
 
   //geting data back from the store
   const {
@@ -47,6 +61,7 @@ function Home() {
     genrePopular,
     genreNewGames,
     selectedPlatform,
+    selectedGenre,
   } = useSelector((state) => state.games);
 
   //filter by platform
@@ -55,9 +70,11 @@ function Home() {
     dispatch(selectPlatform(platformNameMap[platformId]));
     dispatch({ type: "CLEAR_SEARCH" });
     dispatch({ type: "CLEAR_GENRES" });
+    dispatch({ type: "CLEAR_SELECTED_GENRE" });
   };
   const filterByGenres = (genreId) => {
     dispatch(fetchGenre(genreId));
+    dispatch(selectGenre(genreNameMap[genreId]));
     dispatch({ type: "CLEAR_PLATFORMS" });
     dispatch({ type: "CLEAR_SEARCH" });
     dispatch({ type: "CLEAR_SELECTED_PLATFORM" });
@@ -68,6 +85,18 @@ function Home() {
     dispatch({ type: "CLEAR_GENRES" });
     dispatch({ type: "CLEAR_SEARCH" });
     dispatch({ type: "CLEAR_SELECTED_PLATFORM" });
+  };
+  //dynamic h1
+  const upcomingHeaderHandler = () => {
+    return generateHeader("upcoming", selectedPlatform, selectedGenre);
+  };
+
+  const popularHeaderHandler = () => {
+    return generateHeader("popular", selectedPlatform, selectedGenre);
+  };
+
+  const newHeaderHandler = () => {
+    return generateHeader("new", selectedPlatform, selectedGenre);
   };
 
   return (
@@ -127,7 +156,7 @@ function Home() {
         {/* {platformPopular.length ? (
           <div className="searched">
             <h1>
-              {selectedPlatform ? `Popular ${selectedPlatform} games` : ""}
+              {selectedPlatform ? `Popular ${selectedPlatform} games` : "Popular games"}
                {selectedGenre ? `Genre: ${selectedGenre}` : ""}
             </h1>
             <div className="games">
@@ -146,11 +175,7 @@ function Home() {
           ""
         )} */}
 
-        <h1 className="games_h1">
-          {selectedPlatform
-            ? `Upcoming ${selectedPlatform} games`
-            : "Upcoming Games"}
-        </h1>
+        <h1 className="games_h1">{upcomingHeaderHandler()}</h1>
         <div className="games">
           {(platformUpcoming.length ? platformUpcoming : upcoming).map(
             (game) => (
@@ -164,11 +189,7 @@ function Home() {
             )
           )}
         </div>
-        <h1 className="games_h1">
-          {selectedPlatform
-            ? `Popular ${selectedPlatform} games`
-            : "Popular Games"}
-        </h1>
+        <h1 className="games_h1">{popularHeaderHandler()}</h1>
         <div className="games">
           {(platformPopular.length ? platformPopular : popular).map((game) => (
             <Game
@@ -180,9 +201,7 @@ function Home() {
             />
           ))}
         </div>
-        <h1 className="games_h1">
-          {selectedPlatform ? `New ${selectedPlatform} games` : "New Games"}
-        </h1>
+        <h1 className="games_h1">{newHeaderHandler()}</h1>
         <div className="games">
           {(platformNewGames.length ? platformNewGames : newGames).map(
             (game) => (

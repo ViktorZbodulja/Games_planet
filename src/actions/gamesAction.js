@@ -66,3 +66,7 @@ export const selectPlatform = (platformName) => ({
   type: "SELECT_PLATFORM",
   payload: platformName,
 });
+export const selectGenre = (genreName) => ({
+  type: "SELECT_GENRE",
+  payload: genreName,
+});
