@@ -32,7 +32,7 @@ function Home() {
     4: "Steam",
     1: "XBOX-ONE",
     186: "XBOX S/X",
-    7: "Nintendo SW",
+    7: "Nintendo Switch",
     5: "macOS",
   });
   const [genreNameMap, SetgenreNameMap] = useState({
@@ -85,6 +85,7 @@ function Home() {
     dispatch({ type: "CLEAR_GENRES" });
     dispatch({ type: "CLEAR_SEARCH" });
     dispatch({ type: "CLEAR_SELECTED_PLATFORM" });
+    dispatch({ type: "CLEAR_SELECTED_GENRE" });
   };
   //dynamic h1
   const upcomingHeaderHandler = () => {
@@ -98,7 +99,33 @@ function Home() {
   const newHeaderHandler = () => {
     return generateHeader("new", selectedPlatform, selectedGenre);
   };
-
+  const upcomingGamesHandler = () => {
+    if (platformUpcoming.length) {
+      return platformUpcoming;
+    } else if (genreUpcoming.length) {
+      return genreUpcoming;
+    } else {
+      return upcoming;
+    }
+  };
+  const popularGamesHandler = () => {
+    if (platformPopular.length) {
+      return platformPopular;
+    } else if (genrePopular.length) {
+      return genrePopular;
+    } else {
+      return popular;
+    }
+  };
+  const newGamesHandler = () => {
+    if (platformNewGames.length) {
+      return platformNewGames;
+    } else if (genreNewGames.length) {
+      return genreNewGames;
+    } else {
+      return newGames;
+    }
+  };
   return (
     <div className="home">
       <div className="genre_container_home">
@@ -110,7 +137,6 @@ function Home() {
         <button onClick={() => filterByGenres(83)}>Platformer</button>
         <button onClick={() => filterByGenres(10)}>Strategy</button>
         <button onClick={() => filterByGenres(15)}>Sport</button>
-        <button onClick={() => filterByGenres(1)}>Racing</button>
         <button onClick={() => filterByGenres(7)}>Puzzle</button>
         <button onClick={() => filterByGenres(51)}>Indie</button>
       </div>
@@ -153,45 +179,23 @@ function Home() {
         ) : (
           ""
         )}
-        {/* {platformPopular.length ? (
-          <div className="searched">
-            <h1>
-              {selectedPlatform ? `Popular ${selectedPlatform} games` : "Popular games"}
-               {selectedGenre ? `Genre: ${selectedGenre}` : ""}
-            </h1>
-            <div className="games">
-              {platformPopular.map((game) => (
-                <Game
-                  name={game.name}
-                  released={game.released}
-                  id={game.id}
-                  image={game.background_image}
-                  key={game.id}
-                />
-              ))}
-            </div>
-          </div>
-        ) : (
-          ""
-        )} */}
 
         <h1 className="games_h1">{upcomingHeaderHandler()}</h1>
         <div className="games">
-          {(platformUpcoming.length ? platformUpcoming : upcoming).map(
-            (game) => (
-              <Game
-                name={game.name}
-                released={game.released}
-                id={game.id}
-                image={game.background_image}
-                key={game.id}
-              />
-            )
-          )}
+          {upcomingGamesHandler().map((game) => (
+            <Game
+              name={game.name}
+              released={game.released}
+              id={game.id}
+              image={game.background_image}
+              key={game.id}
+            />
+          ))}
         </div>
         <h1 className="games_h1">{popularHeaderHandler()}</h1>
         <div className="games">
-          {(platformPopular.length ? platformPopular : popular).map((game) => (
+          {/*(platformPopular.length ? platformPopular : popular) */}
+          {popularGamesHandler().map((game) => (
             <Game
               name={game.name}
               released={game.released}
@@ -203,17 +207,15 @@ function Home() {
         </div>
         <h1 className="games_h1">{newHeaderHandler()}</h1>
         <div className="games">
-          {(platformNewGames.length ? platformNewGames : newGames).map(
-            (game) => (
-              <Game
-                name={game.name}
-                released={game.released}
-                id={game.id}
-                image={game.background_image}
-                key={game.id}
-              />
-            )
-          )}
+          {newGamesHandler().map((game) => (
+            <Game
+              name={game.name}
+              released={game.released}
+              id={game.id}
+              image={game.background_image}
+              key={game.id}
+            />
+          ))}
         </div>
       </div>
     </div>

@@ -3,9 +3,9 @@ export function generateHeader(category, selectedPlatform, selectedGenre) {
   let specificHeader = "";
 
   if (selectedPlatform) {
-    specificHeader = `${selectedPlatform} `;
+    specificHeader = `${selectedPlatform} - `;
   } else if (selectedGenre) {
-    specificHeader = `${selectedGenre} `;
+    specificHeader = `${selectedGenre} - `;
   }
 
   switch (category) {
