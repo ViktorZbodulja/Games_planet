@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import Gamedetail from "../components/Gamedetail";
 //Redux
 import { useDispatch, useSelector } from "react-redux";
@@ -10,7 +10,9 @@ import {
   selectGenre,
 } from "../actions/gamesAction";
 //Components
-import Game from "../components/Game";
+import PlatformButtons from "../components/PlatformButtons";
+import GenreButtons from "../components/GenreButtons";
+import GameList from "../components/GameList";
 //Animation
 import { useLocation } from "react-router-dom";
 //header function
@@ -26,7 +28,7 @@ function Home() {
     dispatch(loadGames());
   }, [dispatch]);
 
-  const [platformNameMap, setPlatformNameMap] = useState({
+  const platformNameMap = {
     187: "Play Station 5",
     18: "Play Station 4",
     4: "Steam",
@@ -34,8 +36,8 @@ function Home() {
     186: "XBOX S/X",
     7: "Nintendo Switch",
     5: "macOS",
-  });
-  const [genreNameMap, SetgenreNameMap] = useState({
+  };
+  const genreNameMap = {
     4: "Action",
     3: "Adventure",
     5: "RPG",
@@ -46,7 +48,7 @@ function Home() {
     1: "Racing",
     7: "Puzzle",
     51: "Indie",
-  });
+  };
 
   //geting data back from the store
   const {
@@ -79,7 +81,7 @@ function Home() {
     dispatch({ type: "CLEAR_SEARCH" });
     dispatch({ type: "CLEAR_SELECTED_PLATFORM" });
   };
-  //https://api.rawg.io/api/games?key=3d47e9c894c049e0aa8a3715acbdccd6&dates=2019-09-01,2019-09-30&ordering=-added&page_size=10&platform=186
+
   const clearAll = () => {
     dispatch({ type: "CLEAR_PLATFORMS" });
     dispatch({ type: "CLEAR_GENRES" });
@@ -130,93 +132,32 @@ function Home() {
     <div className="home">
       <div className="genre_container_home">
         <h2>Genres</h2>
-        <button onClick={() => filterByGenres(4)}>Action</button>
-        <button onClick={() => filterByGenres(3)}>Adventure</button>
-        <button onClick={() => filterByGenres(5)}>RPG</button>
-        <button onClick={() => filterByGenres(2)}>Shooter</button>
-        <button onClick={() => filterByGenres(83)}>Platformer</button>
-        <button onClick={() => filterByGenres(10)}>Strategy</button>
-        <button onClick={() => filterByGenres(15)}>Sport</button>
-        <button onClick={() => filterByGenres(7)}>Puzzle</button>
-        <button onClick={() => filterByGenres(51)}>Indie</button>
+        <GenreButtons filterByGenres={filterByGenres} />
       </div>
       <div className="game_list">
         <div className="platforms_container">
           <h2>Platforms:</h2>
-          <div className="buttons">
-            <button onClick={() => clearAll()}>All</button>
-            <button onClick={() => filterByPlatform(187)}>
-              Play Station 5
-            </button>
-            <button onClick={() => filterByPlatform(18)}>Play Station 4</button>
-            <button onClick={() => filterByPlatform(4)}>Steam</button>
-            <button onClick={() => filterByPlatform(1)}>XBOX-ONE</button>
-            <button onClick={() => filterByPlatform(186)}>XBOX S/X</button>
-            <button onClick={() => filterByPlatform(7)}>Nintendo SW</button>
-            <button onClick={() => filterByPlatform(5)}>macOS</button>
-          </div>
+          <PlatformButtons
+            filterByPlatform={filterByPlatform}
+            clearAll={clearAll}
+          />
         </div>
-        {pathId && (
-          <div>
-            <Gamedetail pathId={pathId} />
-          </div>
-        )}
+        {pathId && <Gamedetail pathId={pathId} />}
         {searched.length ? (
           <div className="searched">
             <h1 className="games_h1">Searched Games</h1>
-            <div className="games">
-              {searched.map((game) => (
-                <Game
-                  name={game.name}
-                  released={game.released}
-                  id={game.id}
-                  image={game.background_image}
-                  key={game.id}
-                />
-              ))}
-            </div>
+            <GameList games={searched} />
           </div>
         ) : (
           ""
         )}
 
         <h1 className="games_h1">{upcomingHeaderHandler()}</h1>
-        <div className="games">
-          {upcomingGamesHandler().map((game) => (
-            <Game
-              name={game.name}
-              released={game.released}
-              id={game.id}
-              image={game.background_image}
-              key={game.id}
-            />
-          ))}
-        </div>
+        <GameList games={upcomingGamesHandler()} />
         <h1 className="games_h1">{popularHeaderHandler()}</h1>
-        <div className="games">
-          {/*(platformPopular.length ? platformPopular : popular) */}
-          {popularGamesHandler().map((game) => (
-            <Game
-              name={game.name}
-              released={game.released}
-              id={game.id}
-              image={game.background_image}
-              key={game.id}
-            />
-          ))}
-        </div>
+        <GameList games={popularGamesHandler()} />
         <h1 className="games_h1">{newHeaderHandler()}</h1>
-        <div className="games">
-          {newGamesHandler().map((game) => (
-            <Game
-              name={game.name}
-              released={game.released}
-              id={game.id}
-              image={game.background_image}
-              key={game.id}
-            />
-          ))}
-        </div>
+        <GameList games={newGamesHandler()} />
       </div>
     </div>
   );
