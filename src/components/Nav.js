@@ -22,8 +22,12 @@ function Nav() {
       setTextInput("");
     }
   };
-  const clearSearched = () => {
+  const clearAll = () => {
+    dispatch({ type: "CLEAR_PLATFORMS" });
+    dispatch({ type: "CLEAR_GENRES" });
     dispatch({ type: "CLEAR_SEARCH" });
+    dispatch({ type: "CLEAR_SELECTED_PLATFORM" });
+    dispatch({ type: "CLEAR_SELECTED_GENRE" });
   };
 
   return (
@@ -32,7 +36,7 @@ function Nav() {
       variants={fadeIn}
       initial="hidden"
       animate="show">
-      <div className="logo" onClick={clearSearched}>
+      <div className="logo" onClick={clearAll}>
         <img src={logo} alt="logo" />
         <h2>Games Planet</h2>
       </div>

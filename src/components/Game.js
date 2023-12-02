@@ -36,8 +36,7 @@ function Game({ name, released, image, id, stores }) {
           className="store_container"
           layoutId={`store ${stringPathId}`}>
           {stores &&
-            stores.map((store) => {
-              // You need to return the JSX element here
+            stores.slice(0, 3).map((store) => {
               return (
                 <div className="store" key={store.store.id}>
                   {store.store.name}

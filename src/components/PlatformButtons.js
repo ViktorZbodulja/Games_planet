@@ -7,12 +7,12 @@ const PlatformButtons = ({ filterByPlatform, clearAll }) => {
     { id: 4, name: "Steam" },
     { id: 1, name: "XBOX-ONE" },
     { id: 186, name: "XBOX S/X" },
-    { id: 7, name: "Nintendo Switch" },
+    { id: 7, name: "Nintendo Sw" },
     { id: 5, name: "macOS" },
   ];
 
   return (
-    <div className="platform-buttons">
+    <div className="platform_buttons">
       <button onClick={clearAll}>All</button>
       {platforms.map((platform) => (
         <button key={platform.id} onClick={() => filterByPlatform(platform.id)}>
