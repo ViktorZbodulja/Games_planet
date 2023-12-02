@@ -240,7 +240,7 @@ input {
 }
 .store_container .store {
   border: rgb(255, 255, 255) 1px solid;
-  background-color: rgb(53, 53, 53);
+  background-color: #19054b;
   color: white;
   padding: 0.2rem 0.3rem;
   margin-left: 0.3rem;
@@ -355,7 +355,7 @@ input {
 }
 .gallery img {
   transition: all 0.7s ease-in-out;
-  transition-delay: 0.3s;
+  transition-delay: 0.2s;
   border: 3px solid white;
 }
 .gallery img:hover {
