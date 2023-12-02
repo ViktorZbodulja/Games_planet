@@ -11,6 +11,7 @@ const GameList = ({ games }) => {
           released={game.released}
           id={game.id}
           image={game.background_image}
+          stores={game.stores}
         />
       ))}
     </div>

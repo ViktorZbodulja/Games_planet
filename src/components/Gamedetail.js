@@ -90,13 +90,15 @@ function Gamedetail({ pathId }) {
                   {getStars()}
                   <p>({game.rating})</p>
                 </div>
-                <div className="genre_container">
+                <motion.div
+                  className="genre_container"
+                  layoutId={`store ${pathId}`}>
                   {game.genres.map((genre, index) => (
                     <div className="genre" key={index}>
                       {genre.name}
                     </div>
                   ))}
-                </div>
+                </motion.div>
               </div>
               <div className="info">
                 <h3>Platforms</h3>

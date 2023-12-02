@@ -10,7 +10,7 @@ import { resizeImage } from "../utils/util";
 //animations
 import { popup } from "../animations";
 
-function Game({ name, released, image, id }) {
+function Game({ name, released, image, id, stores }) {
   const stringPathId = id.toString();
   //Load details
   const dispatch = useDispatch();
@@ -32,6 +32,19 @@ function Game({ name, released, image, id }) {
       <Link to={`/game/${id}`}>
         <motion.h3 layoutId={`title ${stringPathId}`}>{name}</motion.h3>
         <h4>Release date: {formattedDate}</h4>
+        <motion.div
+          className="store_container"
+          layoutId={`store ${stringPathId}`}>
+          {stores &&
+            stores.map((store) => {
+              // You need to return the JSX element here
+              return (
+                <div className="store" key={store.store.id}>
+                  {store.store.name}
+                </div>
+              );
+            })}
+        </motion.div>
         <motion.img
           src={resizeImage(image, 640)}
           alt={name}

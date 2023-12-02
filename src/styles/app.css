@@ -212,6 +212,7 @@ input {
   border-radius: 1rem;
   cursor: pointer;
   overflow: hidden;
+  position: relative;
 }
 .game img {
   width: 100%;
@@ -228,6 +229,21 @@ input {
   font-size: 1.1rem;
   font-weight: 200;
   color: white;
+}
+
+.store_container {
+  display: flex;
+  justify-content: right;
+  position: absolute;
+  bottom: 0.5rem;
+  right: 1rem;
+}
+.store_container .store {
+  border: rgb(255, 255, 255) 1px solid;
+  background-color: rgb(53, 53, 53);
+  color: white;
+  padding: 0.2rem 0.3rem;
+  margin-left: 0.3rem;
 }
 
 .card_shadow {
