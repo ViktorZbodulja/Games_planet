@@ -10,6 +10,7 @@ import {
   genreUpcomingURL,
   genrePopularURL,
   genreNewgamesURL,
+  publisherGamesURL,
 } from "../api";
 
 //ACTION CREATOR
@@ -62,6 +63,16 @@ export const fetchGenre = (genreId) => async (dispatch) => {
     },
   });
 };
+export const fetchPublisher = (publisherId) => async (dispatch) => {
+  const publisherGames = await axios.get(publisherGamesURL(publisherId));
+  dispatch({
+    type: "PUBLISHER_FILTER",
+    payload: {
+      publisherGames: publisherGames.data.results,
+    },
+  });
+};
+
 export const selectPlatform = (platformName) => ({
   type: "SELECT_PLATFORM",
   payload: platformName,

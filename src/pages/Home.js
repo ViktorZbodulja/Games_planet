@@ -6,6 +6,7 @@ import { loadGames } from "../actions/gamesAction";
 import {
   fetchPlatform,
   fetchGenre,
+  fetchPublisher,
   selectPlatform,
   selectGenre,
 } from "../actions/gamesAction";
@@ -48,6 +49,21 @@ function Home() {
     1: "Racing",
     7: "Puzzle",
     51: "Indie",
+  };
+
+  //https://api.rawg.io/api/publishers?search=bethesda%20Studios&key=3d47e9c894c049e0aa8a3715acbdccd6&page_size=10
+  const publisherNameMap = {
+    109: "Electronic Arts",
+    10830: "Activision Blizzard",
+    308: "Square Enix",
+    3656: "Paradox Interactive",
+    2155: "Rockstar Games",
+    918: "Ubisoft Entertainment",
+    3678: "Larian Studios",
+    3399: "Valve",
+    11687: "Sony",
+    3408: "Sega",
+    339: "Bethesda Softworks",
   };
 
   //geting data back from the store
@@ -128,6 +144,9 @@ function Home() {
       return newGames;
     }
   };
+  const publisherHandler = (publisherId) => {
+    dispatch(fetchPublisher(publisherId));
+  };
   return (
     <div className="home">
       <div className="genre_container_home">
@@ -141,6 +160,7 @@ function Home() {
             filterByPlatform={filterByPlatform}
             clearAll={clearAll}
           />
+          <button onClick={() => publisherHandler(109)}>Publisher test</button>
         </div>
         {pathId && <Gamedetail pathId={pathId} />}
         {searched.length ? (

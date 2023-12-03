@@ -64,3 +64,8 @@ export const genrePopularURL = (genreId) =>
 
 export const genreNewgamesURL = (genreId) =>
   `${base_url}${new_games}&genres=${genreId}`;
+
+export const publisherGamesURL = (publisherId) =>
+  `${base_url}games?ordering=-rating&developers=${publisherId}&key=3d47e9c894c049e0aa8a3715acbdccd6&page_size=10`;
+
+//https://api.rawg.io/api/games?ordering=-rating&developers=109
