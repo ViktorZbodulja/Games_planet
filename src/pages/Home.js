@@ -13,6 +13,7 @@ import {
 //Components
 import PlatformButtons from "../components/PlatformButtons";
 import GenreButtons from "../components/GenreButtons";
+import PublishersButton from "../components/PublishersButton";
 import GameList from "../components/GameList";
 //Animation
 import { useLocation } from "react-router-dom";
@@ -53,8 +54,8 @@ function Home() {
 
   //https://api.rawg.io/api/publishers?search=bethesda%20Studios&key=3d47e9c894c049e0aa8a3715acbdccd6&page_size=10
   const publisherNameMap = {
-    109: "Electronic Arts",
-    10830: "Activision Blizzard",
+    354: "Electronic Arts",
+    11237: "Blizzard Entertainment",
     308: "Square Enix",
     3656: "Paradox Interactive",
     2155: "Rockstar Games",
@@ -80,6 +81,7 @@ function Home() {
     genreNewGames,
     selectedPlatform,
     selectedGenre,
+    publisherGames,
   } = useSelector((state) => state.games);
 
   //filter by platform
@@ -96,6 +98,10 @@ function Home() {
     dispatch({ type: "CLEAR_PLATFORMS" });
     dispatch({ type: "CLEAR_SEARCH" });
     dispatch({ type: "CLEAR_SELECTED_PLATFORM" });
+  };
+  const filteredByPublishers = (publisherId) => {
+    dispatch(fetchPublisher(publisherId));
+    dispatch({ type: "CLEAR_SEARCH" });
   };
 
   const clearAll = () => {
@@ -144,14 +150,14 @@ function Home() {
       return newGames;
     }
   };
-  const publisherHandler = (publisherId) => {
-    dispatch(fetchPublisher(publisherId));
-  };
+
   return (
     <div className="home">
       <div className="genre_container_home">
         <h2>Genres</h2>
         <GenreButtons filterByGenres={filterByGenres} />
+        <h2 id="publisher_header">Publishers:</h2>
+        <PublishersButton filteredByPublishers={filteredByPublishers} />
       </div>
       <div className="game_list">
         <div className="platforms_container">
@@ -160,13 +166,20 @@ function Home() {
             filterByPlatform={filterByPlatform}
             clearAll={clearAll}
           />
-          <button onClick={() => publisherHandler(109)}>Publisher test</button>
         </div>
         {pathId && <Gamedetail pathId={pathId} />}
         {searched.length ? (
           <div className="searched">
             <h1 className="games_h1">Searched Games</h1>
             <GameList games={searched} />
+          </div>
+        ) : (
+          ""
+        )}
+        {publisherGames.length ? (
+          <div className="searched">
+            <h1 className="games_h1">Publisher Games</h1>
+            <GameList games={publisherGames} />
           </div>
         ) : (
           ""

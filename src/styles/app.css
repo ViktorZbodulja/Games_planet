@@ -192,6 +192,10 @@ input {
   }
 }
 
+#publisher_header {
+  margin: 3rem 0 1rem 1.4rem;
+}
+
 .games {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
