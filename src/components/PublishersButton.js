@@ -16,9 +16,10 @@ function PublishersButton({ filteredByPublishers }) {
   ];
 
   return (
-    <div className="platform_buttons">
+    <div className="publishers_buttons">
       {publishers.map((publisher) => (
         <button
+          className="publisher_btn"
           key={publisher.id}
           onClick={() => filteredByPublishers(publisher.id)}>
           {publisher.name}

@@ -9,6 +9,7 @@ import {
   fetchPublisher,
   selectPlatform,
   selectGenre,
+  selectPublisher,
 } from "../actions/gamesAction";
 //Components
 import PlatformButtons from "../components/PlatformButtons";
@@ -67,7 +68,7 @@ function Home() {
     339: "Bethesda Softworks",
   };
 
-  //geting data back from the store
+  //data from the store
   const {
     popular,
     newGames,
@@ -81,6 +82,7 @@ function Home() {
     genreNewGames,
     selectedPlatform,
     selectedGenre,
+    selectedPublisher,
     publisherGames,
   } = useSelector((state) => state.games);
 
@@ -91,6 +93,7 @@ function Home() {
     dispatch({ type: "CLEAR_SEARCH" });
     dispatch({ type: "CLEAR_GENRES" });
     dispatch({ type: "CLEAR_SELECTED_GENRE" });
+    dispatch({ type: "CLEAR_PUBLISHER_GAME" });
   };
   const filterByGenres = (genreId) => {
     dispatch(fetchGenre(genreId));
@@ -98,10 +101,17 @@ function Home() {
     dispatch({ type: "CLEAR_PLATFORMS" });
     dispatch({ type: "CLEAR_SEARCH" });
     dispatch({ type: "CLEAR_SELECTED_PLATFORM" });
+    dispatch({ type: "CLEAR_PUBLISHER_GAME" });
   };
   const filteredByPublishers = (publisherId) => {
     dispatch(fetchPublisher(publisherId));
+    dispatch(selectPublisher(publisherNameMap[publisherId]));
     dispatch({ type: "CLEAR_SEARCH" });
+    // Scroll to the top
+    const isMobile = window.innerWidth < 876;
+    if (!isMobile) {
+      window.scrollTo({ top: 450, behavior: "smooth" });
+    }
   };
 
   const clearAll = () => {
@@ -110,6 +120,7 @@ function Home() {
     dispatch({ type: "CLEAR_SEARCH" });
     dispatch({ type: "CLEAR_SELECTED_PLATFORM" });
     dispatch({ type: "CLEAR_SELECTED_GENRE" });
+    dispatch({ type: "CLEAR_PUBLISHER_GAME" });
   };
   //dynamic h1
   const upcomingHeaderHandler = () => {
@@ -178,7 +189,9 @@ function Home() {
         )}
         {publisherGames.length ? (
           <div className="searched">
-            <h1 className="games_h1">Publisher Games</h1>
+            <h1 className="games_h1">
+              <span className="publisher_h1">{selectedPublisher}</span> Games
+            </h1>
             <GameList games={publisherGames} />
           </div>
         ) : (

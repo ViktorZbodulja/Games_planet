@@ -23,5 +23,10 @@ export function generateHeader(category, selectedPlatform, selectedGenre) {
       break;
   }
 
-  return `${specificHeader}${baseHeader}`;
+  return (
+    <div>
+      <span className="platform_h1">{specificHeader}</span>
+      {baseHeader}
+    </div>
+  );
 }

@@ -58,6 +58,11 @@ const gamesReducer = (state = initState, action) => {
         ...state,
         selectedGenre: action.payload,
       };
+    case "SELECT_PUBLISHER":
+      return {
+        ...state,
+        selectedPublisher: action.payload,
+      };
     case "CLEAR_SEARCH":
       return {
         ...state,
@@ -77,6 +82,11 @@ const gamesReducer = (state = initState, action) => {
         genrePopular: [],
         genreNewGames: [],
       };
+    case "CLEAR_PUBLISHER_GAME":
+      return {
+        ...state,
+        publisherGames: [],
+      };
     case "CLEAR_SELECTED_PLATFORM":
       return {
         ...state,
@@ -87,7 +97,6 @@ const gamesReducer = (state = initState, action) => {
         ...state,
         selectedGenre: null,
       };
-
     default:
       return { ...state };
   }

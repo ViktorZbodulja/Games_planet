@@ -21,6 +21,7 @@ function Nav() {
       dispatch(fetchSearch(textInput));
       setTextInput("");
     }
+    dispatch({ type: "CLEAR_PUBLISHER_GAME" });
   };
   const clearAll = () => {
     dispatch({ type: "CLEAR_PLATFORMS" });

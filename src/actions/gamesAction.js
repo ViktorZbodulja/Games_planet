@@ -81,3 +81,7 @@ export const selectGenre = (genreName) => ({
   type: "SELECT_GENRE",
   payload: genreName,
 });
+export const selectPublisher = (publisherName) => ({
+  type: "SELECT_PUBLISHER",
+  payload: publisherName,
+});
