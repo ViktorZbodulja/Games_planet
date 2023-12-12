@@ -113,26 +113,22 @@
             -webkit-user-select: none;
             touch-action: manipulation;
             margin-right: 0.3rem;
+            &:focus {
+              color: #171e29;
+            }
+            &:hover {
+              border-color: rgb(4, 189, 189);
+              color: white;
+              fill: rgb(4, 189, 189);
+              background-color: rgb(4, 189, 189);
+            }
+            &:active {
+              border-color: rgb(4, 189, 189);
+              color: white;
+              fill: rgb(4, 189, 189);
+              background-color: rgb(4, 189, 189);
+            }
           }
-          
-          button:focus {
-            color: #171e29;
-          }
-          
-          button:hover {
-            border-color: rgb(4, 189, 189);
-            color: white;
-            fill: rgb(4, 189, 189);
-            background-color: rgb(4, 189, 189);
-          }
-          
-          button:active {
-            border-color: rgb(4, 189, 189);
-            color: white;
-            fill: rgb(4, 189, 189);
-            background-color: rgb(4, 189, 189);
-          }
-          
           @media (min-width: 768px) {
             button {
               min-width: 170px;
@@ -178,18 +174,17 @@
     }
   }
 }
-
-
 #publisher_header {
   margin: 3rem 0 1rem 1.4rem;
 }
 .games {
     //min-height: 80vh;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
     grid-column-gap: 3rem;
     grid-row-gap: 5rem;
     margin-bottom: 2rem;
+    min-width: 340px;
     
 }
 .not_found {
@@ -203,7 +198,7 @@
 }
 .games_h1 {
   .publisher_h1 {
-    color: rgb(187, 59, 250);
+    color: #bb3bfa;
   }
   .platform_h1 {
     color: rgb(187, 59, 250)
@@ -211,5 +206,28 @@
   
   
 }
+.btn_container {
+  flex-basis: 95%;
+  position: relative;
+  margin: 3rem auto 6rem 0rem;
+  button {
+    position: absolute;
+    cursor: pointer;
+    width: 100px;
+    top: 0rem;
+    right: 0rem;
+    width: 4.2rem;
+    height: 4.2rem;
+    border-radius: 50%;
+    background-color: rgb(125, 40, 168);
+    transition: all 0.3s ease-in-out;
+    border: 2px solid rgb(125, 40, 168);
+    &:hover {
+      scale: 1.1;
+    }
+   
+  }
+}
+
 
 

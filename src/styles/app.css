@@ -237,10 +237,11 @@ input {
 
 .games {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
   grid-column-gap: 3rem;
   grid-row-gap: 5rem;
   margin-bottom: 2rem;
+  min-width: 340px;
 }
 
 .not_found {
@@ -255,10 +256,32 @@ input {
 }
 
 .games_h1 .publisher_h1 {
-  color: rgb(187, 59, 250);
+  color: #bb3bfa;
 }
 .games_h1 .platform_h1 {
   color: rgb(187, 59, 250);
+}
+
+.btn_container {
+  flex-basis: 95%;
+  position: relative;
+  margin: 3rem auto 6rem 0rem;
+}
+.btn_container button {
+  position: absolute;
+  cursor: pointer;
+  width: 100px;
+  top: 0rem;
+  right: 0rem;
+  width: 4.2rem;
+  height: 4.2rem;
+  border-radius: 50%;
+  background-color: rgb(125, 40, 168);
+  transition: all 0.3s ease-in-out;
+  border: 2px solid rgb(125, 40, 168);
+}
+.btn_container button:hover {
+  scale: 1.1;
 }
 
 .game {
@@ -273,7 +296,7 @@ input {
 }
 .game img {
   width: 100%;
-  height: 40vh;
+  height: 35vh;
   -o-object-fit: cover;
      object-fit: cover;
 }
@@ -301,6 +324,10 @@ input {
   color: white;
   padding: 0.2rem 0.3rem;
   margin-left: 0.3rem;
+}
+
+.info_container {
+  min-height: 8rem;
 }
 
 .card_shadow {
@@ -414,6 +441,7 @@ input {
   transition: all 0.7s ease-in-out;
   transition-delay: 0.2s;
   border: 3px solid white;
+  min-height: 17rem;
 }
 .gallery img:hover {
   scale: 1.3;

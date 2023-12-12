@@ -18,6 +18,7 @@ function Game({ name, released, image, id, stores }) {
     document.body.style.overflow = "hidden";
     dispatch(loadDetail(id));
   };
+  //date format
   const releaseDate = new Date(released);
   const formattedDate = format(releaseDate, "dd.MM.yyyy");
 
@@ -30,8 +31,10 @@ function Game({ name, released, image, id, stores }) {
       initial="hidden"
       animate="show">
       <Link to={`/game/${id}`}>
-        <motion.h3 layoutId={`title ${stringPathId}`}>{name}</motion.h3>
-        <h4>Release date: {formattedDate}</h4>
+        <div className="info_container">
+          <motion.h3 layoutId={`title ${stringPathId}`}>{name}</motion.h3>
+          <h4>Release date: {formattedDate}</h4>
+        </div>
         <motion.div
           className="store_container"
           layoutId={`store ${stringPathId}`}>

@@ -20,6 +20,8 @@ import GameList from "../components/GameList";
 import { useLocation } from "react-router-dom";
 //header function
 import { generateHeader } from "../utils/headerUtil";
+//Icons
+import upIcon from "../img/up_icon_1.svg";
 
 function Home() {
   //get current location
@@ -204,6 +206,14 @@ function Home() {
         <GameList games={popularGamesHandler()} />
         <h1 className="games_h1">{newHeaderHandler()}</h1>
         <GameList games={newGamesHandler()} />
+      </div>
+      <div className="btn_container">
+        <button
+          onClick={() => {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+          }}>
+          <img className="up_btn" src={upIcon} alt="Up Icon" />
+        </button>
       </div>
     </div>
   );
