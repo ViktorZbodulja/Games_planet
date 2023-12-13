@@ -6,7 +6,7 @@
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 5;
+    z-index: 1001;
     &::-webkit-scrollbar {
         width: 0.5rem;
     }
@@ -19,12 +19,12 @@
 }
 .detail {
     width: 75%;
-    position: relative;
     border-radius: 1rem;
     background: white;
     position: absolute;
     left: 12.5%;
     color: black;
+    z-index: 1005;
     img {
         width: 100%;
     }

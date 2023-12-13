@@ -126,13 +126,16 @@ input {
   background-color: #0C0B21;
   flex-basis: 80%;
 }
-.game_list h1 {
-  padding: 5rem 0rem;
+
+.games_h1 {
+  padding: 1rem 0rem 1rem 0rem;
   color: white;
+  transition: all 0.3s ease;
+  background-color: #0C0B21;
 }
 
 .platforms_container {
-  padding-top: 2rem;
+  padding: 2rem 0rem 4rem 0rem;
   flex-wrap: wrap;
 }
 .platforms_container h2 {
@@ -240,7 +243,8 @@ input {
   grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
   grid-column-gap: 3rem;
   grid-row-gap: 5rem;
-  margin-bottom: 2rem;
+  margin-bottom: 5rem;
+  margin-top: 2rem;
   min-width: 340px;
 }
 
@@ -282,6 +286,14 @@ input {
 }
 .btn_container button:hover {
   scale: 1.1;
+}
+
+.fixedHeader {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  background-color: #0C0B21;
 }
 
 .game {
@@ -338,7 +350,7 @@ input {
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 5;
+  z-index: 1001;
 }
 .card_shadow::-webkit-scrollbar {
   width: 0.5rem;
@@ -352,12 +364,12 @@ input {
 
 .detail {
   width: 75%;
-  position: relative;
   border-radius: 1rem;
   background: white;
   position: absolute;
   left: 12.5%;
   color: black;
+  z-index: 1005;
 }
 .detail img {
   width: 100%;

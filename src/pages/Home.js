@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import Gamedetail from "../components/Gamedetail";
 //Redux
 import { useDispatch, useSelector } from "react-redux";
@@ -32,6 +32,36 @@ function Home() {
   useEffect(() => {
     dispatch(loadGames());
   }, [dispatch]);
+
+  const h1Refs = [useRef(), useRef(), useRef()]; // refs for each h1 element
+
+  const handleScroll = () => {
+    const scrollPosition = window.scrollY;
+
+    // Iterating through each h1 element and updating the class
+    h1Refs.forEach((h1Ref, index) => {
+      const h1OffsetTop = h1Ref.current.offsetTop;
+
+      if (scrollPosition >= h1OffsetTop) {
+        // Adding fixedHeader class to the current h1
+        h1Ref.current.classList.add("fixedHeader");
+
+        // Removing the fixedHeader class from the previous h1
+        if (index > 0) {
+          h1Refs[index - 1].current.classList.remove("fixedHeader");
+        }
+      } else {
+        // Remove the fixedHeader class if scrollPosition is above the h1
+        h1Ref.current.classList.remove("fixedHeader");
+      }
+    });
+  };
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   const platformNameMap = {
     187: "Play Station 5",
@@ -200,11 +230,17 @@ function Home() {
           ""
         )}
 
-        <h1 className="games_h1">{upcomingHeaderHandler()}</h1>
+        <h1 ref={h1Refs[0]} className="games_h1">
+          {upcomingHeaderHandler()}
+        </h1>
         <GameList games={upcomingGamesHandler()} />
-        <h1 className="games_h1">{popularHeaderHandler()}</h1>
+        <h1 ref={h1Refs[1]} className="games_h1">
+          {popularHeaderHandler()}
+        </h1>
         <GameList games={popularGamesHandler()} />
-        <h1 className="games_h1">{newHeaderHandler()}</h1>
+        <h1 ref={h1Refs[2]} className="games_h1">
+          {newHeaderHandler()}
+        </h1>
         <GameList games={newGamesHandler()} />
       </div>
       <div className="btn_container">

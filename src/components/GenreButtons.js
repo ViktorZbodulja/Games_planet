@@ -2,8 +2,8 @@ import React from "react";
 
 const GenreButtons = ({ filterByGenres }) => {
   const genres = [
-    { id: 4, name: "Action" },
     { id: 3, name: "Adventure" },
+    { id: 4, name: "Action" },
     { id: 5, name: "RPG" },
     { id: 2, name: "Shooter" },
     { id: 83, name: "Platformer" },

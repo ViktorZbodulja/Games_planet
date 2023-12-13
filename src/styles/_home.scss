@@ -43,25 +43,22 @@
     -webkit-user-select: none;
     touch-action: manipulation;
     margin-right: 0.3rem;
+    &:focus {
+      color: rgb(3, 234, 234);
+    }
+    &:hover {
+      border-color: rgb(4, 189, 189);
+      color: white;
+      fill: rgb(4, 189, 189);
+      background-color: rgb(1, 121, 121);
+    }
+    &:active {
+      border-color: rgb(4, 189, 189);
+      color: white;
+      fill: rgb(4, 189, 189);
+      background-color: rgb(4, 189, 189);
+    } 
   }
-  button:focus {
-    color: rgb(3, 234, 234);
-  }
-  
-  button:hover {
-    border-color: rgb(4, 189, 189);
-    color: white;
-    fill: rgb(4, 189, 189);
-    background-color: rgb(1, 121, 121);
-  }
-  
-  button:active {
-    border-color: rgb(4, 189, 189);
-    color: white;
-    fill: rgb(4, 189, 189);
-    background-color: rgb(4, 189, 189);
-  }
-  
   @media (min-width: 768px) {
     button {
       min-width: 170px;
@@ -72,13 +69,15 @@
     padding: 0rem 3rem;
     background-color: #0C0B21;
     flex-basis: 80%;
-    h1 {
-        padding: 5rem 0rem;
-        color: white;
-    }
+}
+.games_h1 {
+  padding: 1rem 0rem 1rem 0rem;
+  color: white;
+  transition: all 0.3s ease;
+  background-color: #0C0B21;
 }
 .platforms_container {
-    padding-top: 2rem;
+    padding: 2rem 0rem 4rem 0rem;
     flex-wrap: wrap;
     h2 {
         color: white;
@@ -183,7 +182,8 @@
     grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
     grid-column-gap: 3rem;
     grid-row-gap: 5rem;
-    margin-bottom: 2rem;
+    margin-bottom: 5rem;
+    margin-top: 2rem;
     min-width: 340px;
     
 }
@@ -225,8 +225,14 @@
     &:hover {
       scale: 1.1;
     }
-   
   }
+}
+.fixedHeader {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  z-index: 1000; 
+  background-color: #0C0B21;
 }
 
 
