@@ -68,7 +68,7 @@
     }
 }
 .description {
-    margin: 4rem 5rem 4rem 5rem;
+    margin: 3rem 5rem 2.5rem 5rem;
 }
 .rating {
     img {
@@ -131,4 +131,7 @@
     cursor: pointer;
     background: #ff7676;
     color: white;
+}
+.show_more {
+    text-align: right;
 }

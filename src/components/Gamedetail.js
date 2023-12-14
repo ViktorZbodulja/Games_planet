@@ -71,7 +71,7 @@ function Gamedetail({ pathId }) {
   };
 
   const shortText =
-    game && game.description_raw ? game.description_raw.substring(0, 500) : ""; // without check, substring is erroring out
+    game && game.description_raw ? game.description_raw.substring(0, 490) : ""; // without check, substring is erroring out
   const fullText = game ? game.description_raw : "";
   return (
     <>
@@ -123,9 +123,11 @@ function Gamedetail({ pathId }) {
             <div className="description">
               <p>
                 {showMore ? fullText : shortText}
-                <button onClick={toggleShowMore} className="showMoreBtn">
-                  {showMore ? "Read less" : "Read more"}
-                </button>
+                <div className="show_more">
+                  <button onClick={toggleShowMore} className="showMoreBtn">
+                    {showMore ? "Read less" : "Read more"}
+                  </button>
+                </div>
               </p>
             </div>
             <div className="gallery">

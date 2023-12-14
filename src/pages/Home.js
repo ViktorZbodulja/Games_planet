@@ -61,7 +61,7 @@ function Home() {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, []);
+  }, [handleScroll]);
 
   const platformNameMap = {
     187: "Play Station 5",

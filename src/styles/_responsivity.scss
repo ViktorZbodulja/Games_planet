@@ -25,6 +25,26 @@
    
 }
 @media (max-width: 1150px) {
+  .home {
+    justify-content: center;
+  }
+  .genre_container_home {
+    flex-basis: 100%;
+    text-align: center;
+    padding-top: 2rem;
+    margin: 0 1rem;
+    h2 {
+      text-align: center;
+    }
+  }
+  .platforms_container{
+    width: 100%;
+    text-align: center;
+  }
+  .game_list {
+    flex-basis: 100%;
+    padding: 0rem 2rem;
+  }
     .search {
         width: 65%;  
       }
@@ -36,7 +56,7 @@
         transform: translate(-10px);
         img {
             flex-basis: 15%;
-                margin-left: 1rem;
+            margin-left: 1rem;
         }
     }
     .stats {
@@ -58,26 +78,7 @@
   
 }
 @media (max-width: 875px) {
-  .home {
-    justify-content: center;
-  }
-  .genre_container_home {
-    flex-basis: 100%;
-    text-align: center;
-    padding-top: 2rem;
-    margin: 0 1rem;
-    h2 {
-      text-align: center;
-    }
-  }
-  .platforms_container{
-    width: 100%;
-    text-align: center;
-  }
-  .game_list {
-    flex-basis: 100%;
-    padding: 0rem 2rem;
-  }
+ 
   .platform_buttons {
     button {
       align-items: center;
@@ -213,7 +214,7 @@
 }
 @media (max-width: 595px) {
     .games {
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     }
     .game_list {
         padding: 0rem 1rem;
@@ -272,6 +273,7 @@
 @media (max-width: 380px) {
     .game_list {
         padding: 0rem 0.5rem;
+        margin-left: 1rem;
         h1 {
             font-size: 2.5rem;
             padding: 4rem 0rem 2rem 0rem;
@@ -279,6 +281,5 @@
       }
       .gallery {
         padding: 0rem 0.7rem 0.7rem 0.7rem;
-      }
-    
+      }    
 }
