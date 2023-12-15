@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Gamedetail from "../components/Gamedetail";
 //Redux
 import { useDispatch, useSelector } from "react-redux";
@@ -27,6 +27,7 @@ function Home() {
   //get current location
   const location = useLocation();
   const pathId = location.pathname.split("/")[2];
+
   //FETCH GAMES
   const dispatch = useDispatch();
   useEffect(() => {
@@ -34,34 +35,48 @@ function Home() {
   }, [dispatch]);
 
   const h1Refs = [useRef(), useRef(), useRef()]; // refs for each h1 element
+  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
 
   const handleScroll = () => {
     const scrollPosition = window.scrollY;
+    const currentScreenWidth = window.innerWidth;
 
-    // Iterating through each h1 element and updating the class
-    h1Refs.forEach((h1Ref, index) => {
-      const h1OffsetTop = h1Ref.current.offsetTop;
+    if (currentScreenWidth > 768) {
+      // Iterating through each h1 element and updating the class
+      h1Refs.forEach((h1Ref, index) => {
+        const h1OffsetTop = h1Ref.current.offsetTop;
 
-      if (scrollPosition >= h1OffsetTop) {
-        // Adding fixedHeader class to the current h1
-        h1Ref.current.classList.add("fixedHeader");
+        if (scrollPosition >= h1OffsetTop) {
+          // Adding fixedHeader class to the current h1
+          h1Ref.current.classList.add("fixedHeader");
 
-        // Removing the fixedHeader class from the previous h1
-        if (index > 0) {
-          h1Refs[index - 1].current.classList.remove("fixedHeader");
+          // Removing the fixedHeader class from the previous h1
+          if (index > 0) {
+            h1Refs[index - 1].current.classList.remove("fixedHeader");
+          }
+        } else {
+          // Removing the fixedHeader class if scrollPosition is above the h1
+          h1Ref.current.classList.remove("fixedHeader");
         }
-      } else {
-        // Remove the fixedHeader class if scrollPosition is above the h1
+      });
+    } else {
+      // Removing the fixedHeader class from all h1 elements if screen width is <= 768
+      h1Refs.forEach((h1Ref) => {
         h1Ref.current.classList.remove("fixedHeader");
-      }
-    });
+      });
+    }
   };
+
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
+    window.addEventListener("resize", () => setScreenWidth(window.innerWidth)); // Update screenWidth on resize
     return () => {
       window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", () =>
+        setScreenWidth(window.innerWidth)
+      );
     };
-  }, [handleScroll]);
+  }, [handleScroll, screenWidth]);
 
   const platformNameMap = {
     187: "Play Station 5",
@@ -230,15 +245,21 @@ function Home() {
           ""
         )}
 
-        <h1 ref={h1Refs[0]} className="games_h1">
+        <h1
+          ref={h1Refs[0]}
+          className={`games_h1 ${screenWidth > 768 ? "fixedHeader" : ""}`}>
           {upcomingHeaderHandler()}
         </h1>
         <GameList games={upcomingGamesHandler()} />
-        <h1 ref={h1Refs[1]} className="games_h1">
+        <h1
+          ref={h1Refs[1]}
+          className={`games_h1 ${screenWidth > 768 ? "fixedHeader" : ""}`}>
           {popularHeaderHandler()}
         </h1>
         <GameList games={popularGamesHandler()} />
-        <h1 ref={h1Refs[2]} className="games_h1">
+        <h1
+          ref={h1Refs[2]}
+          className={`games_h1 ${screenWidth > 768 ? "fixedHeader" : ""}`}>
           {newHeaderHandler()}
         </h1>
         <GameList games={newGamesHandler()} />
