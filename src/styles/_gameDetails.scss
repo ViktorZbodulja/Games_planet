@@ -104,6 +104,7 @@
         transition-delay: 0.2s;
         border: 3px solid white;
         min-height: 17rem;
+        object-fit: cover;
         &:hover {
             scale: 1.3;
         }

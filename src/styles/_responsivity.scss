@@ -212,6 +212,11 @@
       }     
 }
 @media (max-width: 595px) {
+  .nav {
+    background: linear-gradient(0deg, #0f0f28 0px, rgba(31, 31, 31, 0.3) 0%), url('../img/forspoken_background.jpg');
+    background-position: -250px -100px;
+    background-attachment: fixed;
+  }
     .games {
         grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     }
