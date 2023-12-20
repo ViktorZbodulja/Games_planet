@@ -6,6 +6,7 @@ import { fadeIn } from "../animations";
 //Redux and Routes
 import { fetchSearch } from "../actions/gamesAction";
 import { useDispatch } from "react-redux";
+import { searchedText } from "../actions/gamesAction";
 
 function Nav() {
   const dispatch = useDispatch();
@@ -19,6 +20,7 @@ function Nav() {
     e.preventDefault();
     if (textInput.trim() !== "") {
       dispatch(fetchSearch(textInput));
+      dispatch(searchedText(textInput));
       setTextInput("");
     }
     dispatch({ type: "CLEAR_PUBLISHER_GAME" });

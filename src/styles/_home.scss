@@ -197,14 +197,12 @@
   justify-content: center;
 }
 .games_h1 {
-  .publisher_h1 {
+  .publisher_h1, .platform_h1, .searched_h1{
     color: #bb3bfa;
+  } 
+  .searched_h1 {
+    margin-left: 1rem;
   }
-  .platform_h1 {
-    color: rgb(187, 59, 250)
-    }
-  
-  
 }
 .btn_container {
   flex-basis: 95%;

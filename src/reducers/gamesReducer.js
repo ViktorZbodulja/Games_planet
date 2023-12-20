@@ -1,4 +1,5 @@
 const initState = {
+  inputText: "",
   popular: [],
   newGames: [],
   upcoming: [],
@@ -17,6 +18,11 @@ const initState = {
 
 const gamesReducer = (state = initState, action) => {
   switch (action.type) {
+    case "INPUT_TEXT":
+      return {
+        ...state,
+        inputText: action.payload,
+      };
     case "FETCH_GAMES":
       return {
         ...state,

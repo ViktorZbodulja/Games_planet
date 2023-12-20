@@ -85,3 +85,7 @@ export const selectPublisher = (publisherName) => ({
   type: "SELECT_PUBLISHER",
   payload: publisherName,
 });
+export const searchedText = (inputText) => ({
+  type: "INPUT_TEXT",
+  payload: inputText,
+});

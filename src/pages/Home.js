@@ -117,6 +117,7 @@ function Home() {
 
   //data from the store
   const {
+    inputText,
     popular,
     newGames,
     upcoming,
@@ -228,7 +229,9 @@ function Home() {
         {pathId && <Gamedetail pathId={pathId} />}
         {searched.length ? (
           <div className="searched">
-            <h1 className="games_h1">Searched Games</h1>
+            <h1 className="games_h1">
+              Searched <span className="searched_h1">"{inputText}"</span>
+            </h1>
             <GameList games={searched} />
           </div>
         ) : (
