@@ -5,8 +5,8 @@ import logo from "../img/logo.svg";
 import { fadeIn } from "../animations";
 //Redux and Routes
 import { fetchSearch } from "../actions/gamesAction";
-import { useDispatch } from "react-redux";
 import { searchedText } from "../actions/gamesAction";
+import { useDispatch } from "react-redux";
 
 function Nav() {
   const dispatch = useDispatch();

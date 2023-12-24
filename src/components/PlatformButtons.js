@@ -13,7 +13,7 @@ const PlatformButtons = ({ filterByPlatform, clearAll }) => {
 
   return (
     <div className="platform_buttons">
-      <button onClick={clearAll}>All</button>
+      <button onClick={clearAll}>Clear All</button>
       {platforms.map((platform) => (
         <button key={platform.id} onClick={() => filterByPlatform(platform.id)}>
           {platform.name}

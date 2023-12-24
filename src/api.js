@@ -28,13 +28,20 @@ const nextYear = `${currentYear + 2}-${currentMonth}-${currentDay}`;
 
 //Popular games
 //Fetching from last year to current date
-const upcoming_games = `games?key=3d47e9c894c049e0aa8a3715acbdccd6&dates=${currentDate},${nextYear}&ordering=-added&page_size=12`;
-const popular_games = `games?key=3d47e9c894c049e0aa8a3715acbdccd6&dates=${lastYear},${currentDate}&ordering=-metacritic&page_size=12`;
-const new_games = `games?key=3d47e9c894c049e0aa8a3715acbdccd6&dates=${lastYear},${currentDate}&ordering=-released&page_size=12`;
+const upcoming_games = `games?key=3d47e9c894c049e0aa8a3715acbdccd6&dates=${currentDate},${nextYear}&ordering=-added&`;
+const popular_games = `games?key=3d47e9c894c049e0aa8a3715acbdccd6&dates=${lastYear},${currentDate}&ordering=-metacritic&`;
+const new_games = `games?key=3d47e9c894c049e0aa8a3715acbdccd6&dates=${lastYear},${currentDate}&ordering=-released&`;
 //released
-export const popularGamesURL = () => `${base_url}${popular_games}`;
-export const upcomingGamesURL = () => `${base_url}${upcoming_games}`;
-export const newGamesURL = () => `${base_url}${new_games}`;
+
+export const upcomingGamesURL = (numberOfGames) =>
+  `${base_url}${upcoming_games}page_size=${numberOfGames}`;
+
+export const popularGamesURL = (numberOfGames) =>
+  `${base_url}${popular_games}page_size=${numberOfGames}`;
+
+export const newGamesURL = (numberOfGames) =>
+  `${base_url}${new_games}page_size=${numberOfGames}`;
+
 //GAME DETAILS
 export const gameDetailsURL = (game_id) =>
   `${base_url}games/${game_id}.json?&key=3d47e9c894c049e0aa8a3715acbdccd6`;
@@ -56,8 +63,8 @@ export const platformNewgamesURL = (platformId) =>
   `${base_url}${new_games}&platforms=${platformId}`;
 
 //genre filters
-export const genreUpcomingURL = (genreId) =>
-  `${base_url}games?key=3d47e9c894c049e0aa8a3715acbdccd6&dates=${currentDate},${nextYear}&ordering=-added&page_size=12&genres=${genreId}`;
+export const genreUpcomingURL = (genreId, numberOfGames) =>
+  `${base_url}games?key=3d47e9c894c049e0aa8a3715acbdccd6&dates=${currentDate},${nextYear}&ordering=-added&page_size=${numberOfGames}&genres=${genreId}`;
 
 export const genrePopularURL = (genreId) =>
   `${base_url}${popular_games}&genres=${genreId}`;
@@ -65,7 +72,7 @@ export const genrePopularURL = (genreId) =>
 export const genreNewgamesURL = (genreId) =>
   `${base_url}${new_games}&genres=${genreId}`;
 
-export const publisherGamesURL = (publisherId) =>
-  `${base_url}games?ordering=-metacritic&publishers=${publisherId}&key=3d47e9c894c049e0aa8a3715acbdccd6&page_size=12`;
+export const publisherGamesURL = (publisherId, numberOfGames) =>
+  `${base_url}games?ordering=-metacritic&publishers=${publisherId}&key=3d47e9c894c049e0aa8a3715acbdccd6&page_size=${numberOfGames}`;
 
 //https://api.rawg.io/api/games?ordering=-rating&developers=109

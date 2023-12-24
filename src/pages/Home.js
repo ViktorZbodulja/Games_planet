@@ -142,6 +142,10 @@ function Home() {
     dispatch({ type: "CLEAR_GENRES" });
     dispatch({ type: "CLEAR_SELECTED_GENRE" });
     dispatch({ type: "CLEAR_PUBLISHER_GAME" });
+    setNumberOfGames(12);
+    setNumberOfPopularGames(12);
+    setNumberOfNewGames(12);
+    setNumberOfPublisherGames(12);
   };
   const filterByGenres = (genreId) => {
     dispatch(fetchGenre(genreId));
@@ -150,11 +154,19 @@ function Home() {
     dispatch({ type: "CLEAR_SEARCH" });
     dispatch({ type: "CLEAR_SELECTED_PLATFORM" });
     dispatch({ type: "CLEAR_PUBLISHER_GAME" });
+    setNumberOfGames(12);
+    setNumberOfPopularGames(12);
+    setNumberOfNewGames(12);
+    setNumberOfPublisherGames(12);
   };
   const filteredByPublishers = (publisherId) => {
     dispatch(fetchPublisher(publisherId));
     dispatch(selectPublisher(publisherNameMap[publisherId]));
     dispatch({ type: "CLEAR_SEARCH" });
+    setNumberOfGames(12);
+    setNumberOfPopularGames(12);
+    setNumberOfNewGames(12);
+    setNumberOfPublisherGames(12);
     // Scroll to the top
     const isMobile = window.innerWidth < 876;
     if (!isMobile) {
@@ -169,7 +181,11 @@ function Home() {
     dispatch({ type: "CLEAR_SELECTED_PLATFORM" });
     dispatch({ type: "CLEAR_SELECTED_GENRE" });
     dispatch({ type: "CLEAR_PUBLISHER_GAME" });
+    setNumberOfGames(12);
+    setNumberOfPopularGames(12);
+    setNumberOfNewGames(12);
   };
+
   //dynamic h1
   const upcomingHeaderHandler = () => {
     return generateHeader("upcoming", selectedPlatform, selectedGenre);
@@ -210,6 +226,24 @@ function Home() {
     }
   };
 
+  const [numberOfGames, setNumberOfGames] = useState(12);
+  const [numberOfPopularGames, setNumberOfPopularGames] = useState(12);
+  const [numberOfNewGames, setNumberOfNewGames] = useState(12);
+  const [numberOfPublisherGames, setNumberOfPublisherGames] = useState(12);
+
+  const showMoreUpcoming = () => {
+    setNumberOfGames((prevNum) => prevNum + 6);
+  };
+  const showMorePopular = () => {
+    setNumberOfPopularGames((prevNum) => prevNum + 6);
+  };
+  const showMoreNew = () => {
+    setNumberOfNewGames((prevNum) => prevNum + 6);
+  };
+  const showMorePublisherGames = () => {
+    setNumberOfPublisherGames((prevNum) => prevNum + 6);
+  };
+
   return (
     <div className="home">
       <div className="genre_container_home">
@@ -242,7 +276,16 @@ function Home() {
             <h1 className="games_h1">
               <span className="publisher_h1">{selectedPublisher}</span> Games
             </h1>
-            <GameList games={publisherGames} />
+            <GameList games={publisherGames.slice(0, numberOfPublisherGames)} />
+            <div className="show_more_container">
+              {publisherGames.length && (
+                <button
+                  className="show_more_btn"
+                  onClick={showMorePublisherGames}>
+                  Show more
+                </button>
+              )}
+            </div>
           </div>
         ) : (
           ""
@@ -253,19 +296,42 @@ function Home() {
           className={`games_h1 ${screenWidth > 768 ? "fixedHeader" : ""}`}>
           {upcomingHeaderHandler()}
         </h1>
-        <GameList games={upcomingGamesHandler()} />
+        <GameList games={upcomingGamesHandler().slice(0, numberOfGames)} />
+        <div className="show_more_container">
+          {upcoming.length && (
+            <button className="show_more_btn" onClick={showMoreUpcoming}>
+              Show more
+            </button>
+          )}
+        </div>
         <h1
           ref={h1Refs[1]}
           className={`games_h1 ${screenWidth > 768 ? "fixedHeader" : ""}`}>
           {popularHeaderHandler()}
         </h1>
-        <GameList games={popularGamesHandler()} />
+        <GameList
+          games={popularGamesHandler().slice(0, numberOfPopularGames)}
+        />
+        <div className="show_more_container">
+          {popular.length && (
+            <button className="show_more_btn" onClick={showMorePopular}>
+              Show more
+            </button>
+          )}
+        </div>
         <h1
           ref={h1Refs[2]}
           className={`games_h1 ${screenWidth > 768 ? "fixedHeader" : ""}`}>
           {newHeaderHandler()}
         </h1>
-        <GameList games={newGamesHandler()} />
+        <GameList games={newGamesHandler().slice(0, numberOfNewGames)} />
+        <div className="show_more_container">
+          {popular.length && (
+            <button className="show_more_btn" onClick={showMoreNew}>
+              Show more
+            </button>
+          )}
+        </div>
       </div>
       <div className="btn_container">
         <button
