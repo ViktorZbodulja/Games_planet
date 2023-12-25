@@ -53,8 +53,8 @@ export const searchedGameURL = (game_name) =>
   `${base_url}games?key=3d47e9c894c049e0aa8a3715acbdccd6&search=${game_name}&ordering=-added&page_size=12`;
 
 //platform filters
-export const platformUpcomingURL = (platformId) =>
-  `${base_url}games?key=3d47e9c894c049e0aa8a3715acbdccd6&dates=${currentDate},${nextYear}&ordering=-added&page_size=12&platforms=${platformId}`;
+export const platformUpcomingURL = (platformId, numberOfGames) =>
+  `${base_url}games?key=3d47e9c894c049e0aa8a3715acbdccd6&dates=${currentDate},${nextYear}&ordering=-added&page_size=${numberOfGames}&platforms=${platformId}`;
 
 export const platformPopularURL = (platformId) =>
   `${base_url}${popular_games}&platforms=${platformId}`;
@@ -72,6 +72,7 @@ export const genrePopularURL = (genreId) =>
 export const genreNewgamesURL = (genreId) =>
   `${base_url}${new_games}&genres=${genreId}`;
 
+//publisher filter
 export const publisherGamesURL = (publisherId, numberOfGames) =>
   `${base_url}games?ordering=-metacritic&publishers=${publisherId}&key=3d47e9c894c049e0aa8a3715acbdccd6&page_size=${numberOfGames}`;
 

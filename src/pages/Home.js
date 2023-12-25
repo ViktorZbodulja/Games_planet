@@ -142,7 +142,7 @@ function Home() {
     dispatch({ type: "CLEAR_GENRES" });
     dispatch({ type: "CLEAR_SELECTED_GENRE" });
     dispatch({ type: "CLEAR_PUBLISHER_GAME" });
-    setNumberOfGames(12);
+    setNumberOfUpcomingGames(12);
     setNumberOfPopularGames(12);
     setNumberOfNewGames(12);
     setNumberOfPublisherGames(12);
@@ -154,7 +154,7 @@ function Home() {
     dispatch({ type: "CLEAR_SEARCH" });
     dispatch({ type: "CLEAR_SELECTED_PLATFORM" });
     dispatch({ type: "CLEAR_PUBLISHER_GAME" });
-    setNumberOfGames(12);
+    setNumberOfUpcomingGames(12);
     setNumberOfPopularGames(12);
     setNumberOfNewGames(12);
     setNumberOfPublisherGames(12);
@@ -163,7 +163,7 @@ function Home() {
     dispatch(fetchPublisher(publisherId));
     dispatch(selectPublisher(publisherNameMap[publisherId]));
     dispatch({ type: "CLEAR_SEARCH" });
-    setNumberOfGames(12);
+    setNumberOfUpcomingGames(12);
     setNumberOfPopularGames(12);
     setNumberOfNewGames(12);
     setNumberOfPublisherGames(12);
@@ -181,7 +181,7 @@ function Home() {
     dispatch({ type: "CLEAR_SELECTED_PLATFORM" });
     dispatch({ type: "CLEAR_SELECTED_GENRE" });
     dispatch({ type: "CLEAR_PUBLISHER_GAME" });
-    setNumberOfGames(12);
+    setNumberOfUpcomingGames(12);
     setNumberOfPopularGames(12);
     setNumberOfNewGames(12);
   };
@@ -226,13 +226,13 @@ function Home() {
     }
   };
 
-  const [numberOfGames, setNumberOfGames] = useState(12);
+  const [numberOfUpcomingGames, setNumberOfUpcomingGames] = useState(12);
   const [numberOfPopularGames, setNumberOfPopularGames] = useState(12);
   const [numberOfNewGames, setNumberOfNewGames] = useState(12);
   const [numberOfPublisherGames, setNumberOfPublisherGames] = useState(12);
 
   const showMoreUpcoming = () => {
-    setNumberOfGames((prevNum) => prevNum + 6);
+    setNumberOfUpcomingGames((prevNum) => prevNum + 6);
   };
   const showMorePopular = () => {
     setNumberOfPopularGames((prevNum) => prevNum + 6);
@@ -296,7 +296,9 @@ function Home() {
           className={`games_h1 ${screenWidth > 768 ? "fixedHeader" : ""}`}>
           {upcomingHeaderHandler()}
         </h1>
-        <GameList games={upcomingGamesHandler().slice(0, numberOfGames)} />
+        <GameList
+          games={upcomingGamesHandler().slice(0, numberOfUpcomingGames)}
+        />
         <div className="show_more_container">
           {upcoming.length && (
             <button className="show_more_btn" onClick={showMoreUpcoming}>
