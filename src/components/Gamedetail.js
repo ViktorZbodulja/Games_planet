@@ -73,6 +73,7 @@ function Gamedetail({ pathId }) {
   const shortText =
     game && game.description_raw ? game.description_raw.substring(0, 490) : ""; // without check, substring is erroring out
   const fullText = game ? game.description_raw : "";
+
   return (
     <>
       {!isLoading && (
@@ -120,7 +121,7 @@ function Gamedetail({ pathId }) {
                 layoutId={`image ${pathId}`}
               />
             </div>
-            <div className="description">
+            <div className="description fade-border">
               <p>
                 {showMore ? fullText : shortText}
                 <div className="show_more">

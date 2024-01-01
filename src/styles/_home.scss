@@ -7,7 +7,7 @@
 .genre_container_home {
   flex-basis: 10%;
   flex-direction: column;
-  padding-top: 22rem;
+  padding-top: 20rem;
   text-align: right;
   h2 {
     color: white;
@@ -65,16 +65,29 @@
     }
   }
 }
-.game_list {
+/*.game_list {
     padding: 0rem 3rem;
     background-color: #0C0B21;
     flex-basis: 80%;
+    overflow: hidden;
+}*/
+.game_list {
+  padding: 0rem 2rem 0rem 3rem;
+  background-color: #0C0B21;
+  flex-basis: 85%;
+  overflow: hidden;
 }
 .games_h1 {
   padding: 1rem 0rem 1rem 0rem;
   color: white;
   transition: all 0.3s ease;
   background-color: #0C0B21;
+}
+.new_games_h1 {
+  padding: 3rem 0rem 3rem 0rem;
+}
+.popular_games_h1 {
+  padding: 3rem 0rem 1rem 0rem;
 }
 .platforms_container {
     padding: 2rem 0rem 4rem 0rem;
@@ -174,14 +187,14 @@
   }
 }
 #publisher_header {
-  margin: 3rem 0 1rem 1.4rem;
+  margin: 5rem 0 1rem 1.4rem;
 }
 .games {
     //min-height: 80vh;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-    grid-column-gap: 3rem;
-    grid-row-gap: 5rem;
+    grid-column-gap: 2rem;
+    grid-row-gap: 4rem;
     margin-bottom: 5rem;
     margin-top: 2rem;
     min-width: 340px;
@@ -196,6 +209,9 @@
   align-items: center;
   justify-content: center;
 }
+.splide_container .store_container .store {
+  font-size: 1.05rem;
+}
 .games_h1 {
   .publisher_h1, .platform_h1, .searched_h1{
     color: #bb3bfa;
@@ -207,7 +223,7 @@
 .btn_container {
   flex-basis: 95%;
   position: relative;
-  margin: 3rem auto 6rem 0rem;
+  margin: 2rem auto 6rem 0rem;
   button {
     position: absolute;
     cursor: pointer;
@@ -262,6 +278,9 @@
     -webkit-user-select: none;
     touch-action: manipulation;
     margin-right: 0.3rem;
+}
+.test1 {
+  position:inherit;
 }
 
 

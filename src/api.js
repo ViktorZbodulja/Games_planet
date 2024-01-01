@@ -10,27 +10,37 @@ const getCurrentMonth = () => {
     return month;
   }
 };
-const getCurrentDay = () => {
-  const day = new Date().getDate();
-  if (day < 10) {
-    return `0${day}`;
-  } else {
-    return day;
-  }
+const getCurrentDay = (offset = 0) => {
+  const currentDate = new Date();
+  currentDate.setDate(currentDate.getDate() - offset);
+
+  const year = currentDate.getFullYear();
+  const month = currentDate.getMonth() + 1;
+  const day = currentDate.getDate();
+
+  const formattedMonth = month < 10 ? `0${month}` : `${month}`;
+  const formattedDay = day < 10 ? `0${day}` : `${day}`;
+
+  return `${year}-${formattedMonth}-${formattedDay}`;
 };
 //Current day/month/year
 const currentYear = new Date().getFullYear();
 const currentMonth = getCurrentMonth();
-const currentDay = getCurrentDay();
-const currentDate = `${currentYear}-${currentMonth}-${currentDay}`;
-const lastYear = `${currentYear - 1}-${currentMonth}-${currentDay}`;
-const nextYear = `${currentYear + 2}-${currentMonth}-${currentDay}`;
+const currentDate = getCurrentDay();
+
+const lastYear = `${currentYear - 1}-${currentMonth}-01`;
+const nextYear = `${currentYear + 1}-${currentMonth}-01`;
+
+const prevDate = getCurrentDay(2);
+console.log(currentDate);
+console.log(lastYear);
+console.log(nextYear);
 
 //Popular games
 //Fetching from last year to current date
 const upcoming_games = `games?key=3d47e9c894c049e0aa8a3715acbdccd6&dates=${currentDate},${nextYear}&ordering=-added&`;
 const popular_games = `games?key=3d47e9c894c049e0aa8a3715acbdccd6&dates=${lastYear},${currentDate}&ordering=-metacritic&`;
-const new_games = `games?key=3d47e9c894c049e0aa8a3715acbdccd6&dates=${lastYear},${currentDate}&ordering=-released&`;
+const new_games = `games?key=3d47e9c894c049e0aa8a3715acbdccd6&dates=${lastYear},${prevDate}&ordering=-released&`;
 //released
 
 export const upcomingGamesURL = (numberOfGames) =>
@@ -39,8 +49,7 @@ export const upcomingGamesURL = (numberOfGames) =>
 export const popularGamesURL = (numberOfGames) =>
   `${base_url}${popular_games}page_size=${numberOfGames}`;
 
-export const newGamesURL = (numberOfGames) =>
-  `${base_url}${new_games}page_size=${numberOfGames}`;
+export const newGamesURL = () => `${base_url}${new_games}page_size=16`;
 
 //GAME DETAILS
 export const gameDetailsURL = (game_id) =>

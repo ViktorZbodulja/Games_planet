@@ -62,13 +62,16 @@
 .media {
     img {
         width: 100%;
-        height: 65vh;
+        height: 63vh;
         object-fit: cover;
         z-index: 1;
     }
 }
 .description {
-    margin: 3rem 5rem 2.5rem 5rem;
+    margin: 2.2rem 5rem 2.5rem 5rem;
+    p {
+        padding-top: 2rem;
+    }
 }
 .rating {
     img {
@@ -135,4 +138,17 @@
 }
 .show_more {
     text-align: right;
+}
+.fade-border {
+    position: relative;
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50%; /* Adjust as needed for the desired width of the fade effect */
+    height: 2px;
+    background: linear-gradient(to right, transparent 0%, rgb(61, 61, 61) 50%, transparent 100%);
+  }
 }

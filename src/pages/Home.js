@@ -16,12 +16,16 @@ import PlatformButtons from "../components/PlatformButtons";
 import GenreButtons from "../components/GenreButtons";
 import PublishersButton from "../components/PublishersButton";
 import GameList from "../components/GameList";
+import Game from "../components/Game";
 //Animation
 import { useLocation } from "react-router-dom";
 //header function
 import { generateHeader } from "../utils/headerUtil";
 //Icons
 import upIcon from "../img/up_icon_1.svg";
+//Splide components
+import "@splidejs/splide/dist/css/splide.min.css";
+import { Splide, SplideSlide } from "@splidejs/react-splide";
 
 function Home() {
   //get current location
@@ -34,10 +38,12 @@ function Home() {
     dispatch(loadGames());
   }, [dispatch]);
 
+  {
+    /*   //dynamic h1 on scroll
   const h1Refs = [useRef(), useRef(), useRef()]; // refs for each h1 element
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
 
-  const handleScroll = () => {
+ const handleScroll = () => {
     const scrollPosition = window.scrollY;
     const currentScreenWidth = window.innerWidth;
 
@@ -76,7 +82,8 @@ function Home() {
         setScreenWidth(window.innerWidth)
       );
     };
-  }, [handleScroll, screenWidth]);
+  }, [handleScroll, screenWidth]); */
+  }
 
   const platformNameMap = {
     187: "Play Station 5",
@@ -144,7 +151,6 @@ function Home() {
     dispatch({ type: "CLEAR_PUBLISHER_GAME" });
     setNumberOfUpcomingGames(12);
     setNumberOfPopularGames(12);
-    setNumberOfNewGames(12);
     setNumberOfPublisherGames(12);
   };
   const filterByGenres = (genreId) => {
@@ -156,7 +162,6 @@ function Home() {
     dispatch({ type: "CLEAR_PUBLISHER_GAME" });
     setNumberOfUpcomingGames(12);
     setNumberOfPopularGames(12);
-    setNumberOfNewGames(12);
     setNumberOfPublisherGames(12);
   };
   const filteredByPublishers = (publisherId) => {
@@ -165,7 +170,6 @@ function Home() {
     dispatch({ type: "CLEAR_SEARCH" });
     setNumberOfUpcomingGames(12);
     setNumberOfPopularGames(12);
-    setNumberOfNewGames(12);
     setNumberOfPublisherGames(12);
     // Scroll to the top
     const isMobile = window.innerWidth < 876;
@@ -183,7 +187,6 @@ function Home() {
     dispatch({ type: "CLEAR_PUBLISHER_GAME" });
     setNumberOfUpcomingGames(12);
     setNumberOfPopularGames(12);
-    setNumberOfNewGames(12);
   };
 
   //dynamic h1
@@ -228,20 +231,16 @@ function Home() {
 
   const [numberOfUpcomingGames, setNumberOfUpcomingGames] = useState(12);
   const [numberOfPopularGames, setNumberOfPopularGames] = useState(12);
-  const [numberOfNewGames, setNumberOfNewGames] = useState(12);
   const [numberOfPublisherGames, setNumberOfPublisherGames] = useState(12);
 
   const showMoreUpcoming = () => {
-    setNumberOfUpcomingGames((prevNum) => prevNum + 6);
+    setNumberOfUpcomingGames((prevNum) => prevNum + 4);
   };
   const showMorePopular = () => {
-    setNumberOfPopularGames((prevNum) => prevNum + 6);
-  };
-  const showMoreNew = () => {
-    setNumberOfNewGames((prevNum) => prevNum + 6);
+    setNumberOfPopularGames((prevNum) => prevNum + 4);
   };
   const showMorePublisherGames = () => {
-    setNumberOfPublisherGames((prevNum) => prevNum + 6);
+    setNumberOfPublisherGames((prevNum) => prevNum + 4);
   };
 
   return (
@@ -252,6 +251,7 @@ function Home() {
         <h2 id="publisher_header">Publishers:</h2>
         <PublishersButton filteredByPublishers={filteredByPublishers} />
       </div>
+
       <div className="game_list">
         <div className="platforms_container">
           <h2>Platforms:</h2>
@@ -291,11 +291,7 @@ function Home() {
           ""
         )}
 
-        <h1
-          ref={h1Refs[0]}
-          className={`games_h1 ${screenWidth > 768 ? "fixedHeader" : ""}`}>
-          {upcomingHeaderHandler()}
-        </h1>
+        <h1 className={`games_h1`}>{upcomingHeaderHandler()}</h1>
         <GameList
           games={upcomingGamesHandler().slice(0, numberOfUpcomingGames)}
         />
@@ -306,9 +302,7 @@ function Home() {
             </button>
           )}
         </div>
-        <h1
-          ref={h1Refs[1]}
-          className={`games_h1 ${screenWidth > 768 ? "fixedHeader" : ""}`}>
+        <h1 className={`games_h1 popular_games_h1`}>
           {popularHeaderHandler()}
         </h1>
         <GameList
@@ -321,18 +315,48 @@ function Home() {
             </button>
           )}
         </div>
-        <h1
-          ref={h1Refs[2]}
-          className={`games_h1 ${screenWidth > 768 ? "fixedHeader" : ""}`}>
-          {newHeaderHandler()}
-        </h1>
-        <GameList games={newGamesHandler().slice(0, numberOfNewGames)} />
-        <div className="show_more_container">
-          {popular.length && (
-            <button className="show_more_btn" onClick={showMoreNew}>
-              Show more
-            </button>
-          )}
+        <h1 className={`games_h1 new_games_h1`}>{newHeaderHandler()}</h1>
+        <div className="splide_container">
+          <Splide
+            options={{
+              type: "slide",
+              //perPage: 4,
+              focus: "center",
+              arrows: true,
+              pagination: true,
+              autoplay: 3000,
+              gap: 30,
+              breakpoints: {
+                600: {
+                  perPage: 1,
+                },
+                992: {
+                  perPage: 2,
+                },
+                1500: {
+                  perPage: 3,
+                },
+                1920: {
+                  perPage: 3,
+                },
+              },
+            }}
+            className="splide">
+            {newGamesHandler()
+              .slice(0, 16)
+              .map((game) => (
+                <SplideSlide key={game.id}>
+                  {/* Render your game component here */}
+                  <Game
+                    name={game.name}
+                    released={game.released}
+                    id={game.id}
+                    image={game.background_image}
+                    stores={game.stores}
+                  />
+                </SplideSlide>
+              ))}
+          </Splide>
         </div>
       </div>
       <div className="btn_container">

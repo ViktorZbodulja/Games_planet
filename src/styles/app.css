@@ -61,7 +61,7 @@ input {
 .genre_container_home {
   flex-basis: 10%;
   flex-direction: column;
-  padding-top: 22rem;
+  padding-top: 20rem;
   text-align: right;
 }
 .genre_container_home h2 {
@@ -121,10 +121,17 @@ input {
   }
 }
 
+/*.game_list {
+    padding: 0rem 3rem;
+    background-color: #0C0B21;
+    flex-basis: 80%;
+    overflow: hidden;
+}*/
 .game_list {
-  padding: 0rem 3rem;
+  padding: 0rem 2rem 0rem 3rem;
   background-color: #0C0B21;
-  flex-basis: 80%;
+  flex-basis: 85%;
+  overflow: hidden;
 }
 
 .games_h1 {
@@ -132,6 +139,14 @@ input {
   color: white;
   transition: all 0.3s ease;
   background-color: #0C0B21;
+}
+
+.new_games_h1 {
+  padding: 3rem 0rem 3rem 0rem;
+}
+
+.popular_games_h1 {
+  padding: 3rem 0rem 1rem 0rem;
 }
 
 .platforms_container {
@@ -235,14 +250,14 @@ input {
 }
 
 #publisher_header {
-  margin: 3rem 0 1rem 1.4rem;
+  margin: 5rem 0 1rem 1.4rem;
 }
 
 .games {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-  grid-column-gap: 3rem;
-  grid-row-gap: 5rem;
+  grid-column-gap: 2rem;
+  grid-row-gap: 4rem;
   margin-bottom: 5rem;
   margin-top: 2rem;
   min-width: 340px;
@@ -259,6 +274,10 @@ input {
   justify-content: center;
 }
 
+.splide_container .store_container .store {
+  font-size: 1.05rem;
+}
+
 .games_h1 .publisher_h1, .games_h1 .platform_h1, .games_h1 .searched_h1 {
   color: #bb3bfa;
 }
@@ -269,7 +288,7 @@ input {
 .btn_container {
   flex-basis: 95%;
   position: relative;
-  margin: 3rem auto 6rem 0rem;
+  margin: 2rem auto 6rem 0rem;
 }
 .btn_container button {
   position: absolute;
@@ -330,6 +349,10 @@ input {
   margin-right: 0.3rem;
 }
 
+.test1 {
+  position: inherit;
+}
+
 .game {
   min-height: 30vh;
   box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.2);
@@ -347,8 +370,9 @@ input {
      object-fit: cover;
 }
 .game h3 {
-  padding: 1.5rem 0rem;
+  padding: 1.5rem 0.5rem;
   color: white;
+  font-size: 1.2rem;
 }
 .game h4 {
   margin-bottom: 1rem;
@@ -370,6 +394,7 @@ input {
   color: white;
   padding: 0.2rem 0.3rem;
   margin-left: 0.3rem;
+  font-size: 0.9rem;
 }
 
 .info_container {
@@ -443,14 +468,17 @@ input {
 
 .media img {
   width: 100%;
-  height: 65vh;
+  height: 63vh;
   -o-object-fit: cover;
      object-fit: cover;
   z-index: 1;
 }
 
 .description {
-  margin: 3rem 5rem 2.5rem 5rem;
+  margin: 2.2rem 5rem 2.5rem 5rem;
+}
+.description p {
+  padding-top: 2rem;
 }
 
 .rating img {
@@ -523,6 +551,20 @@ input {
 
 .show_more {
   text-align: right;
+}
+
+.fade-border {
+  position: relative;
+}
+.fade-border::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50%; /* Adjust as needed for the desired width of the fade effect */
+  height: 2px;
+  background: linear-gradient(to right, transparent 0%, rgb(61, 61, 61) 50%, transparent 100%);
 }
 
 .nav {
@@ -607,7 +649,7 @@ input {
     grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
   }
 }
-@media (max-width: 1150px) {
+@media (max-width: 1218px) {
   .home {
     justify-content: center;
   }
@@ -857,4 +899,20 @@ input {
   .gallery {
     padding: 0rem 0.7rem 0.7rem 0.7rem;
   }
+}
+.splide {
+  width: 100%;
+}
+
+.splide_container {
+  padding-bottom: 2.5rem;
+}
+
+.splide__arrow {
+  font-size: 1.6rem;
+  background: #ffffff !important;
+}
+
+.splide__pagination {
+  transform: translateY(50px);
 }/*# sourceMappingURL=app.css.map */
